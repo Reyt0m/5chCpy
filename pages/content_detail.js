@@ -1,23 +1,8 @@
 import Router from "next/router";
 import Link from "next/link";
 
-export const Pagination = ({totalCount}) => {
-	const PER_PAGE = 5;
 
-	const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
 
-	return(
-		<ui>
-			{range(1,Math.ceil(totalCount/PER_PAGE)).map((page, index) => {
-				<li key={index}>
-				<Link href={ `/${number}`}>
-				<a>{number}</a>
-				</Link>
-				</li>
-			})}
-		</ui>
-	);
-	};
 export default function ContentDetail() {
   return (
     <div>
@@ -30,3 +15,23 @@ export default function ContentDetail() {
     </div>
   );
 }
+
+export const Pagination = ({totalCount}) => {
+	const PER_PAGE = 5;
+
+	const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
+
+	return(
+		<ui>
+			{range(1,Math.ceil(totalCount/PER_PAGE)).map((page, index) => {
+				<li key={index}>
+				<Link href={ `/${page}`}>
+				<a>{page}</a>
+				</Link>
+				</li>
+			})}
+		</ui>
+	);
+};
+
+//auto-rendering page
