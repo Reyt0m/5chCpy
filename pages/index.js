@@ -11,14 +11,23 @@ import BlogList from '../components/blogList'
 
 const HomePage = ({ blogData}) => {
 	return (
-	<div className = "home-page">
-		<div className={styles.container}>
-			<link rel="icon" href="/favicon.ico" />
-			<BlogList blogData = {blogData}></BlogList>
+	<>
+		<Head>
+			<title>5ちゃんねる</title>
+		</Head>
+		<div className = "home-page">
+			<div className={styles.container}>
+				<link rel="icon" href="/favicon.ico" />
+				<Link href="/content_detail"><a>Detail</a></Link>
+				{/* automatic image optimization works with any image.when users reest them. the images get from the images directory. not from public*/}
+				<Image src="/images/5ch_head.png" width={100} height={100}></Image>
+				<BlogList blogData = {blogData}></BlogList>
+			</div>
 		</div>
-	</div>
+	</>
 	)
 }
+export default HomePage
 
 //  serverside メソッドを使う必要は本来ない。
 //なぜここにquery?
@@ -37,5 +46,3 @@ export const getServerSideProps = async ({query}) => {
 	}
 	return {props : {blogData}}
 }
-
-export default HomePage
