@@ -3,46 +3,79 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from '../styles/Home.module.css'
 import BlogList from '../components/blogList'
+import Header from '../components/header'
+// import { getSortedPostsData } from "../components/mdBlog";
+import fs from 'fs';
+import path from 'path';
 
-// import
 
-//infinity-scroll
-//  If need to change the data base, should change blogData to the other name
 
+//blog data をフェッチ fs
+// export async function getStaticProps () {
+// 	const allPostsData = getSortedPostsData
+// 	return {
+// 		props: {
+// 			allPostsData
+// 		}
+// 	}
+// }
+const test = path.join(process.cwd(),'../pages/posts/')
+const fileNames = fs.readdirSync(test)
+
+console.log(test)
+// console.log(getSortedPostsData)
+
+// undefinedになるのはなぜ
+// const checkPostData = allPostsData.map(({id, date, title}) => (
+// 	console.log(id, date, title)
+// ))
+
+// const HomePage = ({ blogData,allPostsData}) => {
 const HomePage = ({ blogData}) => {
 	return (
 	<>
 		<Head>
 			<title>5ちゃんねる</title>
 		</Head>
+			<Header> </Header>
 		<div className = "home-page">
+			<main className={styles.main}>
 			<div className={styles.container}>
-				<link rel="icon" href="/favicon.ico" />
-				<Link href="/content_detail"><a>Detail</a></Link>
-				{/* automatic image optimization works with any image.when users reest them. the images get from the images directory. not from public*/}
-				<Image src="/images/5ch_head.png" width={100} height={100}></Image>
+				{/* ブログデータ読み込み。 */}
 				<BlogList blogData = {blogData}></BlogList>
+				<ui>
+					{/* {allPostsData.map(({id, date, title}) => (
+						<li key={id}>
+							{id}
+							<br />
+							{title}
+							<br />
+							{date}
+						</li>
+					))} */}
+				</ui>
+
 			</div>
+			</main>
 		</div>
 	</>
 	)
 }
 export default HomePage
 
-//  serverside メソッドを使う必要は本来ない。
-//なぜここにquery?
-export const getServerSideProps = async ({query}) => {
-	const page = query.page || 1
-	let blogData = null
+//  データをAPIで取得し、成功判定を取る
+// export const getServerSideProps = async ({query}) => {
+// 	const page = query.page || 1
+// 	let blogData = null
 
-	try {
-		const res = await fetch('${process.env.FETCH_URL}/blogs?page=${page}')
-		if(res.status !== 200){
-			throw new Error("データ取得失敗")
-		}
-		blogData = await res.json()
-	} catch (err) {
-		blogData = {error : {message : err.message}}
-	}
-	return {props : {blogData}}
-}
+// 	try {
+// 		const res = await fetch('${process.env.FETCH_URL}/blogs?page=${page}')
+// 		if(res.status !== 200){
+// 			throw new Error("データ取得失敗")
+// 		}
+// 		blogData = await res.json()
+// 	} catch (err) {
+// 		blogData = {error : {message : err.message}}
+// 	}
+// 	return {props : {blogData}}
+// }

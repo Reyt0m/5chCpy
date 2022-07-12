@@ -1,4 +1,5 @@
 import styles from "./header.module.scss";
+import home from "../styles/Home.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,17 +7,11 @@ function Header() {
   return (
     <section className={styles.container}>
       <header className={styles.header}>
-        <div className={styles.header__icon} >
-          <Image
-            src="/img/headerIcon/menu.png"
-            alt="menu icon"
-            loading="eager"
-            width={35}
-            height={35}
-            priority
-          />
-        </div>
-        <h1 style={{ letterSpacing: "1px", textAlign: "left" }}>
+		<Image src="/images/5ch_head.png" width={100} height={100}></Image>
+		<Link href="/">
+			<p className={home.description}>5ちゃんねる</p>
+		</Link>
+        <h1>
           <Link href="/">
             <a>
               <span style={{ fontWeight: 250 }}>Simple</span>
