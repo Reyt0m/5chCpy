@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
-// 作業ディレクトリを返すメソッド。
+// 作業ディレクトリを返すメソッド
 const postDirectory = path.join(process.cwd(),'../pages/posts/')
 
 export function getSortedPostsData () {
