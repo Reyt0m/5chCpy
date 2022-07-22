@@ -1,26 +1,111 @@
-import styles from "./header.module.scss";
-import home from "../styles/Home.module.css";
+import styles from "./component.module.scss";
+import home from "../styles/Home.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import "bootstrap/dist/css/bootstrap.css";
 
 function Header() {
   return (
-    <section className={styles.container}>
-      <header className={styles.header}>
-		<Image src="/images/5ch_head.png" width={100} height={100}></Image>
-		<Link href="/">
-			<p className={home.description}>5ちゃんねる</p>
-		</Link>
-        <h1>
-          <Link href="/">
-            <a>
-              <span style={{ fontWeight: 250 }}>Simple</span>
-              <span style={{ fontWeight: 100 }}>News</span>
-            </a>
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-white fixed-top border">
+        <div>
+          <Link className="navbar-brand" href="/">
+            <Image
+              src="/images/5ch_head.png"
+              width={50}
+              height={50}
+              align="left"
+            ></Image>
           </Link>
-        </h1>
-      </header>
-    </section>
+          <Link className="navbar-brand" href="/">
+            <Image
+              src="/images/5ch_logo.png"
+              width={100}
+              height={30}
+              align="left"
+            ></Image>
+          </Link>
+		</div>
+          <button
+            id="humbugger-menu"
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarResponsive">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <div className="form-group has-search">
+                  <input
+                    id="search_input"
+                    type="text"
+                    className="form-control"
+                    placeholder="スレッドタイトル検索"
+                  />
+                </div>
+              </li>
+              <li className="nav-item dropdown">
+                <Link className="nav-link" href="/pages/login.js">
+                  <a classNameName={styles.navbarBrand} href="/">
+                    {" "}
+                    ログイン{" "}
+                  </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/pages/login.js">
+                  <a classNameName={styles.navbarBrand} href="/">
+                    {" "}
+                    掲示板{" "}
+                  </a>
+                </Link>
+                <a clas s="nav-link" href="https://www2.5ch.net/5ch.html">
+                  スマホ板
+                </a>
+              </li>
+            </ul>
+        </div>
+      </nav>
+      <div className={styles.nav__sub}>
+        <div class="container">
+          <div id="under_header">
+            <span class="public_nav">
+              <span class="menu_item">
+				{/* 消すとsub navが閉じる */}
+					<p> /</p>
+				<Link href="/" title="">
+					<p> [ホーム]</p>
+				</Link>
+              </span>
+              <span class="menu_item">
+				<Link href="/"> [ホーム]</Link>
+              </span>
+              <span class="menu_item">
+				<Link href="/"> [FAQ]</Link>
+              </span>
+              <span class="menu_item">
+				<Link href="/"> [びんたん]</Link>
+              </span>
+              <span class="menu_item">
+				{/* 隠したものを表示 */}
+				<Link href="/"> [クリア]</Link>
+              </span>
+              <span class="menu_item">
+				{/* キーワードで検索 */}
+				<Link href="/"> [フィルタ]</Link>
+              </span>
+            </span>
+            <div class="btn-group sortby-dropdown"></div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

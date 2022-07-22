@@ -30,7 +30,26 @@
   }
 }
 
-.h1{
-	letter-spacing: "1px";
-	text-align: "left"
+.h1 {
+  letter-spacing: "1px";
+  text-align: "left";
+}
+
+.nav{
+	display: flex;
+	// justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	padding: 0 20px;
+	&__sub{
+
+	}
+}
+
+.sidebar {
+	background-color: aqua;
+	width: 30%;
+	height: 100%;
+	padding: 0 20px;
 }

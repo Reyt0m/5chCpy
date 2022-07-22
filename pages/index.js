@@ -1,50 +1,45 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import styles from '../styles/Home.module.css'
-import BlogList from '../components/blogList'
-import Header from '../components/header'
+import styles from "../styles/Home.module.scss";
+import BlogList from "../components/blogList/bloglist";
+import Header from "../components/header";
+import Sidebar from "../components/side";
+import "bootstrap/dist/css/bootstrap.css";
+import { Col, Row } from "react-bootstrap";
 // import { getSortedPostsData } from "../components/mdBlog";
-import fs from 'fs';
-import path from 'path';
-
-
-
-//blog data をフェッチ fs
-// export async function getStaticProps () {
-// 	const allPostsData = getSortedPostsData
-// 	return {
-// 		props: {
-// 			allPostsData
-// 		}
-// 	}
-// }
-const test = path.join(process.cwd(),'../pages/posts/')
-const fileNames = fs.readdirSync(test)
-
-console.log(test)
-// console.log(getSortedPostsData)
-
-// undefinedになるのはなぜ
-// const checkPostData = allPostsData.map(({id, date, title}) => (
-// 	console.log(id, date, title)
-// ))
+// import fs from 'fs';
+import path from "path";
 
 // const HomePage = ({ blogData,allPostsData}) => {
-const HomePage = ({ blogData}) => {
-	return (
-	<>
-		<Head>
-			<title>5ちゃんねる</title>
-		</Head>
-			<Header> </Header>
-		<div className = "home-page">
-			<main className={styles.main}>
-			<div className={styles.container}>
-				{/* ブログデータ読み込み。 */}
-				<BlogList blogData = {blogData}></BlogList>
-				<ui>
-					{/* {allPostsData.map(({id, date, title}) => (
+const HomePage = ({ blogData }) => {
+  return (
+    <>
+      <Head>
+        <title>5ちゃんねる</title>
+      </Head>
+      <Header> </Header>
+      <Row>
+        <Col xs={9}>This is main part.
+      <div className={styles.main}>
+        <div className={styles.container}>
+          {/* ブログデータ読み込み。 */}
+
+          <BlogList blogData={blogData} />
+          <BlogList blogData={blogData} />
+          <BlogList blogData={blogData} />
+        </div>
+		</div>
+
+		</Col>
+        <Col xs={3}>
+			<Sidebar></Sidebar>
+        </Col>
+      </Row>
+      <Sidebar></Sidebar>
+
+        {/* <ui>
+              {allPostsData.map(({id, date, title}) => (
 						<li key={id}>
 							{id}
 							<br />
@@ -52,16 +47,12 @@ const HomePage = ({ blogData}) => {
 							<br />
 							{date}
 						</li>
-					))} */}
-				</ui>
-
-			</div>
-			</main>
-		</div>
-	</>
-	)
-}
-export default HomePage
+					))}
+            </ui> */}
+    </>
+  );
+};
+export default HomePage;
 
 //  データをAPIで取得し、成功判定を取る
 // export const getServerSideProps = async ({query}) => {

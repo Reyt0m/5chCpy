@@ -1,6 +1,22 @@
 .blog {
   padding: 1rem;
 }
+.thread{
+	padding: 2rem 0rem 5rem 0rem;
+	border-bottom: 1px solid #eee;
+}
+.thread_item{
+		padding: 1rem;
+}
+.thread_list{
+	background-color: #f5f;
+}
+.thread_title{
+	font-size: 1.5rem;
+	font-weight: semi-bold;
+	color: #000;
+	margin-bottom: 1rem;
+}
 .blog-list {
   list-style: none;
   display: flex;
