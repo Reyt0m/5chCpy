@@ -38,35 +38,8 @@ const HomePage = ({ blogData }) => {
       </Row>
       <Sidebar></Sidebar>
 
-        {/* <ui>
-              {allPostsData.map(({id, date, title}) => (
-						<li key={id}>
-							{id}
-							<br />
-							{title}
-							<br />
-							{date}
-						</li>
-					))}
-            </ui> */}
+
     </>
   );
 };
 export default HomePage;
-
-//  データをAPIで取得し、成功判定を取る
-// export const getServerSideProps = async ({query}) => {
-// 	const page = query.page || 1
-// 	let blogData = null
-
-// 	try {
-// 		const res = await fetch('${process.env.FETCH_URL}/blogs?page=${page}')
-// 		if(res.status !== 200){
-// 			throw new Error("データ取得失敗")
-// 		}
-// 		blogData = await res.json()
-// 	} catch (err) {
-// 		blogData = {error : {message : err.message}}
-// 	}
-// 	return {props : {blogData}}
-// }
