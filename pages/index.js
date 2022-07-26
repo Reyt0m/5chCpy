@@ -20,25 +20,26 @@ const HomePage = ({ blogData }) => {
       </Head>
       <Header> </Header>
       <Row>
-        <Col xs={9}>This is main part.
-      <div className={styles.main}>
-        <div className={styles.container}>
-          {/* ブログデータ読み込み。 */}
-
-          <BlogList blogData={blogData} />
-          <BlogList blogData={blogData} />
-          <BlogList blogData={blogData} />
-        </div>
-		</div>
-
-		</Col>
+        <Col xs={9}>
+          <div className={styles.main}>
+            <div className={styles.container}>
+              {/* ブログデータ読み込み。 */}
+              <h1>1</h1>
+              <BlogList blogData={blogData} />
+              <h1>2</h1>
+              <BlogList blogData={blogData} />
+              <h1>3</h1>
+              <BlogList blogData={blogData} />
+            </div>
+          </div>
+        </Col>
         <Col xs={3}>
-			<Sidebar></Sidebar>
+          <Sidebar></Sidebar>
         </Col>
       </Row>
       <Sidebar></Sidebar>
 
-        {/* <ui>
+      {/* <ui>
               {allPostsData.map(({id, date, title}) => (
 						<li key={id}>
 							{id}

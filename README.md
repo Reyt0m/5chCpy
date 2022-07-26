@@ -13,3 +13,19 @@
 FAQ => FAQ
 びんたん => スマホ用サイト
 クリア => アラート + 非表示を表示
+
+TODO
+- devブランチ削除
+https://www.freecodecamp.org/japanese/news/how-to-delete-a-git-branch-both-locally-and-remotely/
+- learn => dev への変更
+https://qiita.com/shungo_m/items/4218e70751375b4bfeec
+
+隠す機能
+三項演算子で対応
+https://www.codespeedy.com/how-to-toggle-elements-in-react-js/
+
+
+- コンテンツの下部をcssで隠す
+- 画面を押したときにcssのクラスを消す
+	classlistメソッドによって対応可能。これが該当する
+https://stackoverflow.com/questions/65010686/adding-and-removing-a-classlist-in-react-js
