@@ -29,3 +29,11 @@ https://www.codespeedy.com/how-to-toggle-elements-in-react-js/
 - 画面を押したときにcssのクラスを消す
 	classlistメソッドによって対応可能。これが該当する
 https://stackoverflow.com/questions/65010686/adding-and-removing-a-classlist-in-react-js
+
+- 無限スクロール
+
+画面の位置を取り出す。
+もし、一番しただった場合を切り出す。
+記事を追加する。
+画面追加中ローディングを表示する
+

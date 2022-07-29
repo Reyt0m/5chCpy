@@ -12,6 +12,7 @@ const BlogList = ({ blogData }) => {
   const [show, setShow] = useState(false);
   const reveal = () => {
     // 切り替え
+	// setShow(true);
     show ? setShow(false) : setShow(true);
     console.log("show");
   };
@@ -46,7 +47,7 @@ const BlogList = ({ blogData }) => {
             <div className={`${blog.thread__content} `}>
               <p
                 onClick={reveal}
-                className={`${show ? blog.thread__hidden : null} ${
+                className={`${show ? null : blog.thread__hidden} ${
                   blog.thread__text
                 }`}
               >

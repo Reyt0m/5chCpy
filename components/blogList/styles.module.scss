@@ -1,8 +1,8 @@
 .blog {
   padding: 1rem;
+	background-color: #606770;
 }
 .list {
-  background-color: #f5f;
 }
 .text_right{
 	text-align: right;
@@ -29,7 +29,7 @@
   }
 
   &__title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: semi-bold;
     color: #000;
     display: flex;

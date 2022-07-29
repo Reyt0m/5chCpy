@@ -19,10 +19,10 @@ const HomePage = ({ blogData }) => {
         <title>5ちゃんねる</title>
       </Head>
       <Header> </Header>
-      <Row>
-        <Col xs={9}>
           <div className={styles.main}>
             <div className={styles.container}>
+      <Row>
+        <Col xs={9}>
               {/* ブログデータ読み込み。 */}
               <h1>1</h1>
               <BlogList blogData={blogData} />
@@ -30,14 +30,13 @@ const HomePage = ({ blogData }) => {
               <BlogList blogData={blogData} />
               <h1>3</h1>
               <BlogList blogData={blogData} />
-            </div>
-          </div>
         </Col>
         <Col xs={3}>
           <Sidebar></Sidebar>
         </Col>
       </Row>
-      <Sidebar></Sidebar>
+            </div>
+          </div>
 
       {/* <ui>
               {allPostsData.map(({id, date, title}) => (
