@@ -28,7 +28,7 @@ function Header() {
 		</div>
           <button
             id="humbugger-menu"
-            className="navbar-toggler"
+            className="navbar-toggler bg-gray"
             type="button"
             data-toggle="collapse"
             data-target="#navbarResponsive"
@@ -36,6 +36,7 @@ function Header() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
+			あいうえお
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
@@ -72,7 +73,9 @@ function Header() {
             </ul>
         </div>
       </nav>
-      <div className={styles.nav__sub}>
+	  {/* 無理やり位置を調整しているので、正しく羅列させる必要がある。
+ */}
+      <div className="nav__sub">
         <div class="container">
           <div id="under_header">
             <span class="public_nav">

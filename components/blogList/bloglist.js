@@ -6,24 +6,24 @@ import blog from "./styles.module.scss";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "../../styles/Home.module.scss";
 
-
 const BlogList = ({ blogData }) => {
   const [hide, setHide] = useState(true);
-//   非表示から表示変え。
-  const [show,setShow] = useState(false);
+  //   非表示から表示変え。
+  const [show, setShow] = useState(false);
   const reveal = () => {
-	setShow(true);
-	console.log("show");
-  }
+    // 切り替え
+    show ? setShow(false) : setShow(true);
+    console.log("show");
+  };
 
   return (
     <div classNameName={blog.list}>
       <div className={blog.thread}>
         {hide ? (
           <div className={blog.thread__item}>
-            <div className="public_nav" align="right">
-              <div className="post_nav_buttons">
-                <a onClick={() => setHide(!hide)} className="hide_post">
+            <div className={blog.public_nav} align="right">
+              <div className={blog.post_nav_buttons}>
+                <a onClick={() => setHide(!hide)} className={blog.hide_post}>
                   [隠す]
                 </a>
               </div>
@@ -43,10 +43,13 @@ const BlogList = ({ blogData }) => {
                 </p>
               </Link>
             </div>
-            <div
-              className={`${blog.thread__content} ${blog.thread__fade_bottom}`}
-            >
-              <p className={`${show ? "blog.thread__hidden" : ""} ${blog.thread__text}`} onClick={reveal}>
+            <div className={`${blog.thread__content} `}>
+              <p
+                onClick={reveal}
+                className={`${show ? blog.thread__hidden : null} ${
+                  blog.thread__text
+                }`}
+              >
                 7/8(金) 20:21 <br />
                 <br />
                 　神奈川県警浦賀署は８日、暴行の疑いで横須賀市池田町６丁目、無職の男（７８）を現行犯逮捕した。
@@ -78,37 +81,37 @@ const BlogList = ({ blogData }) => {
                 </a>
               </p>
             </div>
-            <div className="poster_info">
-              <span className="name">夜のけいちゃん ★</span>
-              <span className="date">
+            <div className={blog.poster_info}>
+              <span className={blog.poster_info__name}>夜のけいちゃん ★</span>
+              <span className={blog.poster_info__date}>
                 2022/07/10(日) 19:14:09.24 ID:T0Aiayy/9
               </span>
             </div>
-            <div className="thread_detail text-right">
-              <span className="thread_detail_child">
+            <div className={` ${blog.thread__detail} ${blog.text_right}`}>
+              <span className={blog.thread__detail__child}>
                 <Link href="/pages/board.js">
-                  <span className="thread_detail_child_value">45</span>
+                  <span className={blog.thread_detail_child_value}>45</span>
                 </Link>
               </span>
-              <span className="thread_detail_child">
-                <span className="thread_detail_child_value">
+              <span className={blog.thread_detail_child}>
+                <span className={blog.thread_detail_child_value}>
                   <Link href="/pages/news.js">ニュース速報+</Link>
                 </span>
               </span>
-              <span className="thread_detail_child">
-                <span className="fa fa-flash"></span>
-                <span className="thread_detail_child_value">18520</span>
+              <span className={blog.thread_detail_child}>
+                <span className={`${blog.fa} ${blog.fa_flash}`}></span>
+                <span className={blog.thread_detail_child_value}>18520</span>
               </span>
-              <span className="thread_detail_child">
+              <span className={blog.thread_detail_child}>
                 <button
                   data-boardid="newsplus"
                   type="button"
-                  className="btn btn-info btn-sm follow-button"
+                  className={"btn btn_info btn_sm follow_button"}
                 >
                   フォローする
                 </button>
               </span>
-              <span className="thread_detail_child"></span>
+              <span className={blog.thread_detail_child}></span>
             </div>
           </div>
         ) : null}
