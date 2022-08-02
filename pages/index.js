@@ -13,30 +13,40 @@ import path from "path";
 
 // const HomePage = ({ blogData,allPostsData}) => {
 const HomePage = ({ blogData }) => {
+  //ブログデータを回数分表示したいだけなので、forの方がいいと考えるとどうなる。
+  const blogs = [];
+  for (let i = 0; i < 100; i++) {
+    blogs.push(blogData);
+  }
   return (
     <>
       <Head>
         <title>5ちゃんねる</title>
       </Head>
       <Header> </Header>
-          <div className={styles.main}>
-            <div className={styles.container}>
-      <Row>
-        <Col xs={9}>
+      <div className={styles.main}>
+        <div className={styles.container}>
+          <Row>
+            <Col xs={9}>
               {/* ブログデータ読み込み。 */}
-              <h1>1</h1>
-              <BlogList blogData={blogData} />
-              <h1>2</h1>
-              <BlogList blogData={blogData} />
-              <h1>3</h1>
-              <BlogList blogData={blogData} />
-        </Col>
-        <Col xs={3}>
-          <Sidebar></Sidebar>
-        </Col>
-      </Row>
-            </div>
-          </div>
+              <ui>
+                {blogs.map((blog, i) => {
+                  return (
+                    <>
+                      <h1>{i+1}</h1>
+                      <BlogList key={i} blogData={blog} />
+                    </>
+                  );
+                })}
+                {/* <BlogList blogData={blogData} /> */}
+              </ui>
+            </Col>
+            <Col xs={3}>
+              <Sidebar></Sidebar>
+            </Col>
+          </Row>
+        </div>
+      </div>
 
       {/* <ui>
               {allPostsData.map(({id, date, title}) => (
