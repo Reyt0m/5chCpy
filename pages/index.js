@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
+
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,25 +9,53 @@ import Header from "../components/header";
 import Sidebar from "../components/side";
 import "bootstrap/dist/css/bootstrap.css";
 import { Col, Row } from "react-bootstrap";
-// import { getSortedPostsData } from "../components/mdBlog";
-// import fs from 'fs';
-import path from "path";
 
-// const HomePage = ({ blogData,allPostsData}) => {
 const HomePage = ({ blogData }) => {
-  // 1 を初期値にして、クリックすると上限値である初期値が増加する形。
-  const [loadBlogs, setLoadBlogs] = useState(1);
-  const loadMoreBlogs = () => {
-    setLoadBlogs(loadBlogs + 1);
-    console.log(loadBlogs);
-  };
-  // usestate使わないバージョンのテスト
-  // let loadBlogs = 1
-  // const loadMoreBlogs = () => {
-  // 	loadBlogs = loadBlogs + 1;
-  // 	console.log(loadBlogs);
+  //   const y = getLastBlog.current.offsetTop
+  //   loadBlogsの値と一致するkeyを持つ要素を取得
+  // last child のクラスがある画面にたどり着いたら次の記事を読み込む。とする場合、last child があるクラスの
+  //
+
+  // ボツ
+  // const handleScroll = (position) => {
+  // 	console.log(position);
+  // 	const bottom = position.target.scrollHeight - position.target.scrollTop;
+  // 	if (bottom == 0) {
+  // 		console.log(bottom);
+  // 	}
   // }
-//   const index = loadBlogs;
+
+  // ボツ
+  // const lastBlogY = document.querySelector(".last-blog");
+  // const getLastBlogY = lastBlogY.offsetTop;
+
+  //   const getLastBlog = useRef();
+  const [y, setY] = useState(false);
+  const handleScroll = () => {
+    if (
+      window.innerHeight +
+        Math.max(
+          window.pageYOffset,
+          document.documentElement.scrollTop,
+          document.body.scrollTop
+        ) !==
+      document.documentElement.offsetHeight
+	  )
+	  	return;
+	console.log("bottom");
+    setY(true);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+		window.removeEventListener("scroll", handleScroll);
+		setLoadBlogs(loadBlogs + 5);
+		console.log(loadBlogs);
+    };
+  });
+
+  // 記事ローディング
+  const [loadBlogs, setLoadBlogs] = useState(1);
   const blogs = [];
   for (let i = 0; i < loadBlogs; i++) {
     blogs.push(blogData);
@@ -38,17 +67,17 @@ const HomePage = ({ blogData }) => {
       </Head>
       <Header> </Header>
       <div className={styles.main}>
-        <div className={styles.container}>
+        {/* <div className={styles.container } onScroll={handleScroll}> */}
+        {/* onScrollが動いていない。 */}
+        <div
+          className={styles.container}
+          onScroll={() => {
+            handleScroll();
+          }}
+        >
           <Row>
             <Col xs={9}>
               {/* ブログデータ読み込み。 */}
-              {/* <button
-                onClick={() => {
-                  loadMoreBlogs;
-                }}
-              >
-                load
-              </button> */}
               <button
                 onClick={() => {
                   setLoadBlogs(loadBlogs + 1);
@@ -56,23 +85,34 @@ const HomePage = ({ blogData }) => {
               >
                 load {loadBlogs}
               </button>
-              {/* useState使わない場合のテスト */}
-              {/* <button onClick={() =>
-				{
-					loadBlogs=loadBlogs + 1
-					console.log(loadBlogs);
-					console.log(index);
-				}} > {" "}load</button> */}
               <ui>
                 {blogs.map((blog, i) => {
                   return (
                     <>
                       <h1>{i + 1}</h1>
-                      <BlogList key={i} blogData={blog} />
+                      <BlogList key={i} blogData={blog}></BlogList>
+                      {i == blogs.length - 1 ? (
+                        <span className="last-blog" />
+                      ) : null}
+                      <button
+                        onClick={(position) => {
+                          console.log(window.pageYOffset);
+                          console.log(position.target.clientHeight);
+                        }}
+                      >
+                        場所チェック
+                      </button>
                     </>
                   );
                 })}
-                {/* <BlogList blogData={blogData} /> */}
+                <button
+                  onClick={(position) => {
+                    console.log(window.pageYOffset);
+                    console.log(position.target.clientHeight);
+                  }}
+                >
+                  場所チェック
+                </button>
               </ui>
             </Col>
             <Col xs={3}>
@@ -97,20 +137,3 @@ const HomePage = ({ blogData }) => {
   );
 };
 export default HomePage;
-
-//  データをAPIで取得し、成功判定を取る
-// export const getServerSideProps = async ({query}) => {
-// 	const page = query.page || 1
-// 	let blogData = null
-
-// 	try {
-// 		const res = await fetch('${process.env.FETCH_URL}/blogs?page=${page}')
-// 		if(res.status !== 200){
-// 			throw new Error("データ取得失敗")
-// 		}
-// 		blogData = await res.json()
-// 	} catch (err) {
-// 		blogData = {error : {message : err.message}}
-// 	}
-// 	return {props : {blogData}}
-// }
