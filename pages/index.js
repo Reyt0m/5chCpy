@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,9 +14,21 @@ import path from "path";
 
 // const HomePage = ({ blogData,allPostsData}) => {
 const HomePage = ({ blogData }) => {
-  //ブログデータを回数分表示したいだけなので、forの方がいいと考えるとどうなる。
+  // 1 を初期値にして、クリックすると上限値である初期値が増加する形。
+  const [loadBlogs, setLoadBlogs] = useState(1);
+  const loadMoreBlogs = () => {
+    setLoadBlogs(loadBlogs + 1);
+    console.log(loadBlogs);
+  };
+  // usestate使わないバージョンのテスト
+  // let loadBlogs = 1
+  // const loadMoreBlogs = () => {
+  // 	loadBlogs = loadBlogs + 1;
+  // 	console.log(loadBlogs);
+  // }
+//   const index = loadBlogs;
   const blogs = [];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < loadBlogs; i++) {
     blogs.push(blogData);
   }
   return (
@@ -29,11 +42,32 @@ const HomePage = ({ blogData }) => {
           <Row>
             <Col xs={9}>
               {/* ブログデータ読み込み。 */}
+              {/* <button
+                onClick={() => {
+                  loadMoreBlogs;
+                }}
+              >
+                load
+              </button> */}
+              <button
+                onClick={() => {
+                  setLoadBlogs(loadBlogs + 1);
+                }}
+              >
+                load {loadBlogs}
+              </button>
+              {/* useState使わない場合のテスト */}
+              {/* <button onClick={() =>
+				{
+					loadBlogs=loadBlogs + 1
+					console.log(loadBlogs);
+					console.log(index);
+				}} > {" "}load</button> */}
               <ui>
                 {blogs.map((blog, i) => {
                   return (
                     <>
-                      <h1>{i+1}</h1>
+                      <h1>{i + 1}</h1>
                       <BlogList key={i} blogData={blog} />
                     </>
                   );
