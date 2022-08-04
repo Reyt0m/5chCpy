@@ -11,33 +11,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Col, Row } from "react-bootstrap";
 
 const HomePage = ({ blogData }) => {
-	  // 記事ローディング
-	  const [loadBlogs, setLoadBlogs] = useState(1);
-	  const blogs = [];
-	  for (let i = 0; i < loadBlogs; i++) {
-		blogs.push(blogData);
-	  }
-
-  //   const y = getLastBlog.current.offsetTop
-  //   loadBlogsの値と一致するkeyを持つ要素を取得
-  // last child のクラスがある画面にたどり着いたら次の記事を読み込む。とする場合、last child があるクラスの
-  //
-
-  // ボツ
-  // const handleScroll = (position) => {
-  // 	console.log(position);
-  // 	const bottom = position.target.scrollHeight - position.target.scrollTop;
-  // 	if (bottom == 0) {
-  // 		console.log(bottom);
-  // 	}
-  // }
-
-  // ボツ
-  // const lastBlogY = document.querySelector(".last-blog");
-  // const getLastBlogY = lastBlogY.offsetTop;
-
-  //   const getLastBlog = useRef();
-  //   const [y, setY] = useState(false);
+  // 記事ローディング
+  const [loadBlogs, setLoadBlogs] = useState(1);
+  const blogs = [];
+  for (let i = 0; i < loadBlogs; i++) {
+    blogs.push(blogData);
+  }
+  //   detect window reached bottom
   const handleScroll = () => {
     if (
       window.innerHeight +
@@ -46,27 +26,14 @@ const HomePage = ({ blogData }) => {
           document.documentElement.scrollTop,
           document.body.scrollTop
         ) >=
-      document.documentElement.offsetHeight
-    ){
-		// console.log(window.innerHeight);
-		// console.log(window.pageYOffset);
-		// console.log(document.documentElement.scrollTop);
-		// console.log(document.body.scrollTop);
-		// console.log(document.documentElement.offsetHeight);
-		console.log("bottom");
-		setLoadBlogs(loadBlogs + 1)
-	}
-    // setY(true);
+      document.documentElement.offsetHeight - 100
+    )
+      setLoadBlogs(loadBlogs + 1);
   };
+  //   add article
   useEffect(() => {
-	console.log(loadBlogs-1  +  "から1増加")
     window.addEventListener("scroll", handleScroll);
-    return () => {
-		setLoadBlogs(loadBlogs + 1);
-		console.log(loadBlogs);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  });
+  }, [loadBlogs]);
 
   return (
     <>
@@ -75,19 +42,9 @@ const HomePage = ({ blogData }) => {
       </Head>
       <Header> </Header>
       <div className={styles.main}>
-        {/* <div className={styles.container } onScroll={handleScroll}> */}
-        {/* onScrollが動いていない。 */}
         <div className={styles.container} onScroll={handleScroll}>
           <Row>
             <Col xs={9}>
-              {/* ブログデータ読み込み。 */}
-              <button
-                onClick={() => {
-                  setLoadBlogs(loadBlogs + 1);
-                }}
-              >
-                load {loadBlogs}
-              </button>
               <ui>
                 {blogs.map((blog, i) => {
                   return (
@@ -97,15 +54,6 @@ const HomePage = ({ blogData }) => {
                       {i == blogs.length - 1 ? (
                         <span className="last-blog" />
                       ) : null}
-                      <button
-                        onClick={(position) => {
-                          console.log(window.pageYOffset);
-                          console.log(document.documentElement.scrollTop);
-                          console.log(document.body.scrollTop);
-                        }}
-                      >
-                        場所チェック
-                      </button>
                     </>
                   );
                 })}
@@ -117,7 +65,6 @@ const HomePage = ({ blogData }) => {
           </Row>
         </div>
       </div>
-
     </>
   );
 };
