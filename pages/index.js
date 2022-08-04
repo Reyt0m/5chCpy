@@ -11,6 +11,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Col, Row } from "react-bootstrap";
 
 const HomePage = ({ blogData }) => {
+	  // 記事ローディング
+	  const [loadBlogs, setLoadBlogs] = useState(1);
+	  const blogs = [];
+	  for (let i = 0; i < loadBlogs; i++) {
+		blogs.push(blogData);
+	  }
+
   //   const y = getLastBlog.current.offsetTop
   //   loadBlogsの値と一致するkeyを持つ要素を取得
   // last child のクラスがある画面にたどり着いたら次の記事を読み込む。とする場合、last child があるクラスの
@@ -30,7 +37,7 @@ const HomePage = ({ blogData }) => {
   // const getLastBlogY = lastBlogY.offsetTop;
 
   //   const getLastBlog = useRef();
-  const [y, setY] = useState(false);
+  //   const [y, setY] = useState(false);
   const handleScroll = () => {
     if (
       window.innerHeight +
@@ -38,28 +45,29 @@ const HomePage = ({ blogData }) => {
           window.pageYOffset,
           document.documentElement.scrollTop,
           document.body.scrollTop
-        ) !==
+        ) >=
       document.documentElement.offsetHeight
-	  )
-	  	return;
-	console.log("bottom");
-    setY(true);
+    ){
+		// console.log(window.innerHeight);
+		// console.log(window.pageYOffset);
+		// console.log(document.documentElement.scrollTop);
+		// console.log(document.body.scrollTop);
+		// console.log(document.documentElement.offsetHeight);
+		console.log("bottom");
+		setLoadBlogs(loadBlogs + 1)
+	}
+    // setY(true);
   };
   useEffect(() => {
+	console.log(loadBlogs-1  +  "から1増加")
     window.addEventListener("scroll", handleScroll);
     return () => {
-		window.removeEventListener("scroll", handleScroll);
-		setLoadBlogs(loadBlogs + 5);
+		setLoadBlogs(loadBlogs + 1);
 		console.log(loadBlogs);
+      window.removeEventListener("scroll", handleScroll);
     };
   });
 
-  // 記事ローディング
-  const [loadBlogs, setLoadBlogs] = useState(1);
-  const blogs = [];
-  for (let i = 0; i < loadBlogs; i++) {
-    blogs.push(blogData);
-  }
   return (
     <>
       <Head>
@@ -69,12 +77,7 @@ const HomePage = ({ blogData }) => {
       <div className={styles.main}>
         {/* <div className={styles.container } onScroll={handleScroll}> */}
         {/* onScrollが動いていない。 */}
-        <div
-          className={styles.container}
-          onScroll={() => {
-            handleScroll();
-          }}
-        >
+        <div className={styles.container} onScroll={handleScroll}>
           <Row>
             <Col xs={9}>
               {/* ブログデータ読み込み。 */}
@@ -97,7 +100,8 @@ const HomePage = ({ blogData }) => {
                       <button
                         onClick={(position) => {
                           console.log(window.pageYOffset);
-                          console.log(position.target.clientHeight);
+                          console.log(document.documentElement.scrollTop);
+                          console.log(document.body.scrollTop);
                         }}
                       >
                         場所チェック
@@ -105,14 +109,6 @@ const HomePage = ({ blogData }) => {
                     </>
                   );
                 })}
-                <button
-                  onClick={(position) => {
-                    console.log(window.pageYOffset);
-                    console.log(position.target.clientHeight);
-                  }}
-                >
-                  場所チェック
-                </button>
               </ui>
             </Col>
             <Col xs={3}>
@@ -122,17 +118,6 @@ const HomePage = ({ blogData }) => {
         </div>
       </div>
 
-      {/* <ui>
-              {allPostsData.map(({id, date, title}) => (
-						<li key={id}>
-							{id}
-							<br />
-							{title}
-							<br />
-							{date}
-						</li>
-					))}
-            </ui> */}
     </>
   );
 };
