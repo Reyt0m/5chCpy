@@ -39,6 +39,7 @@ const HomePage = ({ blogData }) => {
     <>
       <Head>
         <title>5chcpy</title>
+
       </Head>
       <Header> </Header>
       <div className={styles.main}>
