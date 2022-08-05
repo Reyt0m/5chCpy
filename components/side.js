@@ -7,9 +7,9 @@ import "bootstrap/dist/css/bootstrap.css";
 function Sidebar() {
   return (
     <>
-      <div classNameName={styles.sidebar}>
-        <div id="content-widget" className="">
-          <div className="card my-4">
+        <div id="content-widget" className={styles.sidebar}>
+          <div className="card styles.my-4">
+          {/* <div className='${styles.my-4} ${styles.card}'> */}
             <div className="card-body">
               <div className="content">
                 <div>
@@ -104,7 +104,6 @@ function Sidebar() {
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 }

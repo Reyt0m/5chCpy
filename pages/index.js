@@ -4,7 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
-import BlogList from "../components/blogList/bloglist";
+import BlogList from "../components/bloglist";
 import Header from "../components/header";
 import Sidebar from "../components/side";
 import "bootstrap/dist/css/bootstrap.css";
@@ -12,7 +12,7 @@ import { Col, Row } from "react-bootstrap";
 
 const HomePage = ({ blogData }) => {
   // 記事ローディング
-  const [loadBlogs, setLoadBlogs] = useState(1);
+  const [loadBlogs, setLoadBlogs] = useState(10);
   const blogs = [];
   for (let i = 0; i < loadBlogs; i++) {
     blogs.push(blogData);
@@ -38,14 +38,15 @@ const HomePage = ({ blogData }) => {
   return (
     <>
       <Head>
-        <title>5ちゃんねる</title>
+        <title>5chcpy</title>
       </Head>
       <Header> </Header>
       <div className={styles.main}>
         <div className={styles.container} onScroll={handleScroll}>
           <Row>
-            <Col xs={9}>
-              <ui>
+            <Col md={8}>
+				{/* <div> */}
+              <div className={styles.post_item_box}>
                 {blogs.map((blog, i) => {
                   return (
                     <>
@@ -57,9 +58,9 @@ const HomePage = ({ blogData }) => {
                     </>
                   );
                 })}
-              </ui>
+              </div>
             </Col>
-            <Col xs={3}>
+            <Col md={4}>
               <Sidebar></Sidebar>
             </Col>
           </Row>

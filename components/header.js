@@ -1,11 +1,16 @@
-import styles from "./component.module.scss";
+import header from "./component.module.scss";
 import home from "../styles/Home.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.css";
 
+
 function Header() {
-  return (
+	const reView = () => {
+		alert("非表示の投稿を本当に再表示しますか")
+	}
+
+	return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-white fixed-top border">
         <div>
@@ -53,7 +58,7 @@ function Header() {
               </li>
               <li className="nav-item dropdown">
                 <Link className="nav-link" href="/pages/login.js">
-                  <a classNameName={styles.navbarBrand} href="/">
+                  <a classNameName={header.navbarBrand} href="/">
                     {" "}
                     ログイン{" "}
                   </a>
@@ -61,7 +66,7 @@ function Header() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" href="/pages/login.js">
-                  <a classNameName={styles.navbarBrand} href="/">
+                  <a classNameName={header.navbarBrand} href="/">
                     {" "}
                     掲示板{" "}
                   </a>
@@ -97,7 +102,7 @@ function Header() {
               </span>
               <span class="menu_item">
 				{/* 隠したものを表示 */}
-				<Link href="/"> [クリア]</Link>
+				<a  onClick={reView}>[クリア]</a>
               </span>
               <span class="menu_item">
 				{/* キーワードで検索 */}

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import Router, { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import blog from "./styles.module.scss";
+import blog from "./blog.module.scss";
 import "bootstrap/dist/css/bootstrap.css";
-import styles from "../../styles/Home.module.scss";
+import styles from "../styles/Home.module.scss";
 
 const BlogList = ({ blogData }) => {
   const [hide, setHide] = useState(true);

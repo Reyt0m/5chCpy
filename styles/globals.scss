@@ -1,9 +1,8 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  position: relative;
+  width: 100%;
+  padding-top: 56px;
 }
 
 a {
@@ -12,11 +11,10 @@ a {
 }
 
 * {
-	background-color: rgb(31,31,31);
-	color : white;
-	padding: 0%;
-	margin: 0%;
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-	Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 0%;
+  margin: 0%;
+  font-family: -apple-system, BlinkMacSystemFont, helvetica neue,
+    ヒラギノ角ゴ pron w3, Hiragino Kaku Gothic ProN, Arial, メイリオ, Meiryo,
+    sans-serif;
   box-sizing: border-box;
 }
