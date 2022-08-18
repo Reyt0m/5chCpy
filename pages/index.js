@@ -37,36 +37,37 @@ const HomePage = ({ blogData }) => {
 
   return (
     <>
-      <Head>
+      <head>
         <title>5chcpy</title>
-
-      </Head>
-      <Header> </Header>
-      <div className={styles.main}>
-        <div className={styles.container} onScroll={handleScroll}>
-          <Row>
-            <Col md={8}>
-				{/* <div> */}
-              <div className={styles.post_item_box}>
-                {blogs.map((blog, i) => {
-                  return (
-                    <>
-                      <h1>{i + 1}</h1>
-                      <BlogList key={i} blogData={blog}></BlogList>
-                      {i == blogs.length - 1 ? (
-                        <span className="last-blog" />
-                      ) : null}
-                    </>
-                  );
-                })}
-              </div>
-            </Col>
-            <Col md={4}>
-              <Sidebar></Sidebar>
-            </Col>
-          </Row>
+      </head>
+      <body>
+        <Header> </Header>
+        <div className={styles.main}>
+          <div className={styles.container} onScroll={handleScroll}>
+            <Row>
+              <Col md={8}>
+                {/* <div> */}
+                <div className={styles.post_item_box}>
+                  {blogs.map((blog, i) => {
+                    return (
+                      <>
+                        <h1>{i + 1}</h1>
+                        <BlogList key={i} blogData={blog}></BlogList>
+                        {i == blogs.length - 1 ? (
+                          <span className="last-blog" />
+                        ) : null}
+                      </>
+                    );
+                  })}
+                </div>
+              </Col>
+              <Col md={4}>
+                <Sidebar></Sidebar>
+              </Col>
+            </Row>
+          </div>
         </div>
-      </div>
+      </body>
     </>
   );
 };

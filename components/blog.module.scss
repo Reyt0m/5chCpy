@@ -9,6 +9,12 @@
 .thread {
   padding: 2rem 0rem 5rem 0rem;
   border-bottom: 1px solid #eee;
+	&__box{
+		display:flex;
+		&__wrap{
+			display: block;
+		}
+	}
   &__hidden {
     position: relative;
     overflow: hidden;
@@ -34,7 +40,7 @@
     display: flex;
     margin-bottom: 1rem;
     &__image {
-      margin-right: 1rem;
+      margin: 1rem 0rem;
     }
   }
   &__item {

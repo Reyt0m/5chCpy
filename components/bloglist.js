@@ -20,7 +20,7 @@ const BlogList = ({ blogData }) => {
   };
 
   return (
-    <div classNameName={blog.list}>
+    <div className={blog.list}>
       <div className={blog.thread}>
         {hide ? (
           <div className={blog.thread__item}>
@@ -31,20 +31,25 @@ const BlogList = ({ blogData }) => {
                 </a>
               </div>
             </div>
-            <div className={blog.thread__title}>
-              <Image
-                className={blog.thread__title__image}
-                src="/images/5ch_article.png"
-                width={200}
-                height={200}
-                align="left"
-              ></Image>
-              <Link href="/">
-                <p>
-                  【神奈川】路上で「ばか、死ね」スマホでライブ配信をしながら歩いていた女子高校生の腹部をキャリーバッグで殴る　78歳男逮捕★2
-                  [夜のけいちゃん★]
-                </p>
-              </Link>
+            <div className={blog.thread__box}>
+              <div className={blog.thread__box__wrap}>
+                <Image
+                  className={blog.thread__title__image}
+                  src="/images/5ch_article.png"
+                  width={300}
+                  height={300}
+                  // layout="fill"
+                  align="left"
+                ></Image>
+              </div>
+              <div className={blog.thread__title}>
+                <Link href="/">
+                  <p>
+                    【神奈川】路上で「ばか、死ね」スマホでライブ配信をしながら歩いていた女子高校生の腹部をキャリーバッグで殴る　78歳男逮捕★2
+                    [夜のけいちゃん★]
+                  </p>
+                </Link>
+              </div>
             </div>
             <div className={`${blog.thread__content} `}>
               <p
@@ -120,17 +125,17 @@ const BlogList = ({ blogData }) => {
         ) : null}
       </div>{" "}
       {/* 一旦保留 */}
-      {/* <ui classNameName="blog-list__list">
+      {/* <ui className="blog-list__list">
 				{blogs.length > 0 && blogs.map((blog, index) => {
 					return (
-						<li classNameName="blog-list__item" key={index}>
+						<li className="blog-list__item" key={index}>
 							<span>{blog.name}</span>
 						</li>
 					)
 				}
 			)}
 			</ui> */}
-      {/* {loading && <h1 classNameName="blog-list__loading">Loading...</h1>} */}
+      {/* {loading && <h1 className="blog-list__loading">Loading...</h1>} */}
     </div>
   );
 };
