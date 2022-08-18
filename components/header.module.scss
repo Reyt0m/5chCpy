@@ -19,7 +19,8 @@
   }
 }
 
-
+.navbar-nav{
+}
 .nav {
   display: flex;
   width: 100%;
@@ -27,7 +28,18 @@
   &__sub {
 		// color: blue;
   }
+	&__item{
+		vertical-align:top;
+		// padding: 5px 12px !important
+
+	}
+	// @media(max-width:991.98px) {
+	// 	&__item{
+	// 		padding: 10px 0 !important
+	// 	}
+	// }
 }
+
 .navbar-toggler {
   background-color: #5b9dfe;
 }

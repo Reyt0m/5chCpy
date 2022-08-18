@@ -4,8 +4,8 @@ import home from "../styles/Home.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Modal from "react-bootstrap/Modal";
 
 function Header() {
   const reView = () => {
@@ -13,9 +13,22 @@ function Header() {
     document.location.reload();
   };
 
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const showModal = () => {
+    setIsOpen(true);
+  };
+
+  const hideModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
-			{/* <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">	</link> */}
+      <head>
+        {" "}
+        <link rel="stylesheet" href="./header.module.scss" />
+      </head>
       <nav className="navbar navbar-expand-lg navbar-dark bg-white fixed-top border">
         <div>
           <Link className="navbar-brand" href="/">
@@ -50,9 +63,8 @@ function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
+            <li className="nav__item">
               <div className="form-group has-search">
-				<FontAwesomeIcon icon="search" />
                 <input
                   id="search_input"
                   type="text"
@@ -61,17 +73,17 @@ function Header() {
                 />
               </div>
             </li>
-            <li className="nav-item dropdown">
+            <li className="nav__item dropdown">
               <Link className="nav-link" href="/pages/login.js">
-                <a classNameName={header.navbarBrand} href="/">
+                <a className={header.navbarBrand} href="/">
                   {" "}
                   ログイン{" "}
                 </a>
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav__item">
               <Link className="nav-link" href="/pages/login.js">
-                <a classNameName={header.navbarBrand} href="/">
+                <a className={header.navbarBrand} href="/">
                   {" "}
                   掲示板{" "}
                 </a>
@@ -111,10 +123,63 @@ function Header() {
               </span>
               <span class="menu_item">
                 {/* キーワードで検索 */}
-                <Link href="/"> [フィルタ]</Link>
+
+                <a onClick={showModal}> [フィルタ]</a>
               </span>
             </span>
             <div class="btn-group sortby-dropdown"></div>
+
+            <Modal show={isOpen} onHide={hideModal}>
+              <Modal.Body>
+                <div class="modal-body">
+                  <p>
+                    <span class="close">×</span>
+                    キーワードを入れる:
+                    <input
+                      type="text"
+                      id="filter_keyword"
+                      name="fkeyword"
+                      minlength="3"
+                      maxlength="32"
+                      class="form-control"
+                      placeholder="キーワード"
+                    />
+                  </p>
+                  <input
+                    class="btn btn-lg btn-primary btn-block"
+                    id="filter_add"
+                    type="button"
+                    value="追加"
+                  />
+                  <div align="center" class="filter_keywords_list_box">
+                    <span class="filter_keywords_item">
+                      <a
+                        href="javascript:void(0)"
+                        class="filter_keywords_list_button"
+                      >
+                        [リスト表示]
+                      </a>
+                      <a
+                        href="javascript:void(0)"
+                        class="filter_keywords_clear_all_button"
+                      >
+                        [フィルタをクリア]
+                      </a>
+                      <a
+                        href="javascript:void(0)"
+                        class="filter_keywords_refresh_page_button"
+                      >
+                        [ページの更新]
+                      </a>
+                    </span>
+                    <span
+                      class="filter_keywords_item"
+                      id="filter_keywords_list"
+                    ></span>
+                  </div>
+                </div>
+              </Modal.Body>
+            </Modal>
           </div>
         </div>
       </div>

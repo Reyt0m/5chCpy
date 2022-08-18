@@ -12,9 +12,11 @@ const BlogList = ({ blogData }) => {
   const [show, setShow] = useState(false);
   const reveal = () => {
     // 切り替え
-	// setShow(true);
+    // setShow(true);
     show ? setShow(false) : setShow(true);
     console.log("show");
+    // 余裕があったらjsonに変換
+    // const jsonThreadContent =
   };
 
   return (
