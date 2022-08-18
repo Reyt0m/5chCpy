@@ -1,9 +1,3 @@
-
-.sidebar {
-  width: 80%;
-  height: 100%;
-  padding: 0 20px;
-}
 @media screen and (min-width: 768px) {
 	#content-widget {
 		visibility: none;
@@ -19,4 +13,8 @@
 #content-widget .mt-4,
 .my-4 {
 	margin-top: .9rem !important
+}
+
+.center_object{
+	text-align: center;
 }

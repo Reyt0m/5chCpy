@@ -4,7 +4,7 @@ import home from "../styles/Home.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "react-bootstrap/Modal";
 
 function Header() {
@@ -25,77 +25,81 @@ function Header() {
 
   return (
     <>
-      <nav className="nav navbar navbar-expand-lg navbar-dark bg-light fixed-top">
-        <div className="container">
-          <p className="navbar-brand">
-            <Link href="/">
-              <Image
-                src="/images/5ch_head.png"
-                width={50}
-                height={50}
-                align="left"
-              ></Image>
-            </Link>
-            <Link href="/">
-              <Image
-                src="/images/5ch_logo.png"
-                width={100}
-                height={30}
-                align="left"
-              ></Image>
-            </Link>
-          </p>
-          <button
-            className="navbar-toggler"
-            id="humbugger-menu"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarResponsive"
-            aria-controls="navbarResponsive"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            あいうえお
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarResponsive">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav__item">
-                <div className="form-group has-search">
-                  <input
-                    id="search_input"
-                    type="text"
-                    className="form-control"
-                    placeholder="スレッドタイトル検索"
-                  />
-                </div>
-              </li>
-              <li className="nav__item dropdown">
-                <Link className="nav-link" href="/pages/login.js">
-                  <a className={header.navbarBrand} href="/">
-                    {" "}
-                    ログイン{" "}
+      <div>
+        <nav className="nav navbar navbar-expand-lg navbar-dark bg-white border-bottom fixed-top">
+          <div className="container">
+            <a className="navbar-brand">
+              <Link href="/">
+                <Image
+                  src="/images/5ch_head.png"
+                  width={50}
+                  height={50}
+                  align="left"
+                ></Image>
+              </Link>
+              <Link href="/">
+                <Image
+                  src="/images/5ch_logo.png"
+                  width={100}
+                  height={30}
+                  align="left"
+                ></Image>
+              </Link>
+            </a>
+
+            <button
+              className="navbar-toggler"
+              id="humbugger-menu"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarResponsive"
+              aria-controls="navbarResponsive"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              あいうえお
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarResponsive">
+              {/* <ul className="navbar-nav ml-auto"> */}
+			  <ul class="nav justify-content-end ml-auto">
+
+                <li className="nav-item">
+                  <div className="form-group has-search">
+                    <input
+                      id="search_input"
+                      type="text"
+                      className="form-control"
+                      placeholder="スレッドタイトル検索"
+                    />
+                  </div>
+                </li>
+                <li className="nav-item dropdown">
+                  <a className="nav-link" href="/">
+                    ログイン
                   </a>
-                </Link>
-              </li>
-              <li className="nav__item">
-                <Link className="nav-link" href="/pages/login.js">
-                  <a className={header.navbarBrand} href="/">
-                    {" "}
-                    掲示板{" "}
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/">
+                    掲示板
                   </a>
-                </Link>
-                <a clas s="nav-link" href="https://www2.5ch.net/5ch.html">
-                  スマホ板
-                </a>
-              </li>
-            </ul>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/">
+                    スマホ板
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
       <div className={header.sub}>
         <div className={header.container}>
           <div id={header.under_header}>
+            {/* <br></br>
+			<br></br>
+			<br></br> */}
             <span className={header.nav__public}>
               <span className="menu_item">
                 <Link href="/"> [ホーム]</Link>
@@ -106,11 +110,11 @@ function Header() {
               <span className="menu_item">
                 <Link href="/"> [びんたん]</Link>
               </span>
-              <span className="menu_item">
+              <span className="menu_item text-info">
                 {/* 隠したものを表示 */}
                 <a onClick={reView}>[クリア]</a>
               </span>
-              <span className="menu_item">
+              <span className="menu_item text-info">
                 {/* キーワードで検索 */}
 
                 <a onClick={showModal}> [フィルタ]</a>

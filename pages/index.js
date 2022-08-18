@@ -36,7 +36,7 @@ const HomePage = ({ blogData }) => {
   }, [loadBlogs]);
 
   return (
-    <>
+    <html>
       <head>
         <title>5chcpy</title>
       </head>
@@ -68,7 +68,7 @@ const HomePage = ({ blogData }) => {
           </div>
         </div>
       </body>
-    </>
+    </html>
   );
 };
 export default HomePage;
