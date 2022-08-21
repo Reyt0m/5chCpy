@@ -62,8 +62,7 @@ function Header() {
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
               {/* <ul className="navbar-nav ml-auto"> */}
-			  <ul class="nav justify-content-end ml-auto">
-
+			  <ul className="nav justify-content-end ml-auto">
                 <li className="nav-item">
                   <div className="form-group has-search">
                     <input

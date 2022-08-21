@@ -36,11 +36,9 @@ const HomePage = ({ blogData }) => {
   }, [loadBlogs]);
 
   return (
-    <html>
-      <head>
+    <>
         <title>5chcpy</title>
-      </head>
-      <body>
+      <div>
         <Header> </Header>
         <div className={styles.main}>
           <div className={styles.container} onScroll={handleScroll}>
@@ -67,8 +65,8 @@ const HomePage = ({ blogData }) => {
             </Row>
           </div>
         </div>
-      </body>
-    </html>
+      </div>
+    </>
   );
 };
 export default HomePage;

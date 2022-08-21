@@ -85,11 +85,11 @@ function Sidebar() {
               </div>
             </div>
           </div>
-		  <div class="card my-4">
-                <div class="card-body">
-                  <hr class="widget-hr" />
-                  {/* <div class="content">
-                    <div class="ads-item">
+		  <div className="card my-4">
+                <div className="card-body">
+                  <hr className="widget-hr" />
+                  {/* <div className="content">
+                    <div className="ads-item">
                     </div>
                   </div> */}
                 </div>
