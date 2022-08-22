@@ -41,7 +41,7 @@ const HomePage = ({ blogData }) => {
       <div>
         <Header> </Header>
         <div className={styles.main}>
-          <div className={styles.container} onScroll={handleScroll}>
+          <div className={styles.main__part} onScroll={handleScroll}>
             <Row>
               <Col md={8}>
                 {/* <div> */}
