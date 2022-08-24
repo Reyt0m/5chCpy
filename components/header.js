@@ -4,7 +4,8 @@ import home from "../styles/Home.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.css";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faSignIn } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-bootstrap/Modal";
 
 function Header() {
@@ -24,40 +25,40 @@ function Header() {
   };
 
   const hidePost = () => {
-	alert(document.getElementsByClassName("last-blog").length);
+    alert(document.getElementsByClassName("last-blog").length);
   };
 
-// 定義
-// stateでarrayに追加して保存する=>そこにアクセスする。
-// function getFilterKeywordsList() {
-// 	if (localStorage.filterKeywords) {
-// 	  return JSON.parse(localStorage.filterKeywords);
-// 	} else {
-// 	  return [];
-// 	}
-//   }
-//   // フィルターされたものを隠す
-//   function hideFilterKeywords() {
-// 	var fkw_arr_list = getFilterKeywordsList();
-// 	fkw_arr_list.forEach(
-// 	  function (fkw) {
-// 	  var post_contents = function () {
-// 		  // このthisを入れ替えて上げる必要がある。 .thread-content一個一個の
-// 		li_thread_content = $(this).parent().parent().parent();
-// 	  // その場所以下のテキストをすべて取得？
-// 		comment = $(this).html();
-// 		if (comment.toString().match(fkw)) {
-// 		  li_thread_content.hide();
-// 		}
-// 	  };
-// 	  $(".thread-content").each(post_contents);
-// 	});
-//   }
+  // 定義
+  // stateでarrayに追加して保存する=>そこにアクセスする。
+  // function getFilterKeywordsList() {
+  // 	if (localStorage.filterKeywords) {
+  // 	  return JSON.parse(localStorage.filterKeywords);
+  // 	} else {
+  // 	  return [];
+  // 	}
+  //   }
+  // フィルターされたものを隠す
+  function hideFilterKeywords() {
+    // var fkw_arr_list = getFilterKeywordsList();
+    const fkw_arr_list = ["女子学生"];
+    fkw_arr_list.forEach(function (fkw) {
+      var post_contents = function () {
+        // このthisを入れ替えて上げる必要がある。 .thread-content一個一個の
+        li_thread_content = $(this).parent().parent().parent();
+        // その場所以下のテキストをすべて取得？
+        comment = $(this).html();
+        if (comment.toString().match(fkw)) {
+          li_thread_content.hide();
+        }
+      };
+      $(".thread-content").each(post_contents);
+    });
+  }
   return (
     <>
       <div>
         <nav className="nav navbar navbar-expand-lg navbar-dark bg-white border-bottom fixed-top">
-          <div className="container">
+          <div className={header.container}>
             <a className="navbar-brand">
               <Link href="/">
                 <Image
@@ -91,20 +92,31 @@ function Header() {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
-              {/* <ul className="navbar-nav ml-auto"> */}
-			  <ul className="nav justify-content-end ml-auto">
-                <li className="nav-item">
-                  <div className="form-group has-search">
+              <ul className="nav justify-content-end ml-auto">
+                <li className={`${header.nav_item}nav-item`}>
+                  <div
+                    className={`${header.form__group}  form-group has-search `}
+                  >
+                    <span className={`${header.form_control_feedback}`}>
+                      <FontAwesomeIcon
+                        className={header.icon}
+                        icon={faSearch}
+                      ></FontAwesomeIcon>
+                    </span>
                     <input
                       id="search_input"
                       type="text"
-                      className="form-control"
+                      className={`${header.form__control} form-control`}
                       placeholder="スレッドタイトル検索"
                     />
                   </div>
                 </li>
                 <li className="nav-item dropdown">
                   <a className="nav-link" href="/">
+                    <FontAwesomeIcon
+                      className={header.icon}
+                      icon={faSignIn}
+                    ></FontAwesomeIcon>
                     ログイン
                   </a>
                 </li>
@@ -124,29 +136,33 @@ function Header() {
         </nav>
       </div>
       <div className={header.sub}>
-        <div className={header.container}>
-          <div id={header.under_header}>
+        <div className={header.container__sub}>
+          <div className={header.under_header}>
             {/* <br></br>
 			<br></br>
 			<br></br> */}
             <span className={header.nav__public}>
               <span className="menu_item">
-                <Link href="/"> [ホーム]</Link>
+                <a href="/"> [ホーム]</a>
               </span>
               <span className="menu_item">
-                <Link href="/"> [FAQ]</Link>
+                <a href="/"> [FAQ]</a>
               </span>
               <span className="menu_item">
-                <Link href="/"> [びんたん]</Link>
+                <a href="/"> [びんたん]</a>
               </span>
-              <span className="menu_item text-info">
+              <span className="menu_item">
                 {/* 隠したものを表示 */}
-                <a onClick={reView}>[クリア]</a>
+                <a href="" onClick={reView}>
+                  [クリア]
+                </a>
               </span>
-              <span className="menu_item text-info">
+              <span className="menu_item">
                 {/* キーワードで検索 */}
-
-                <a onClick={showModal}> [フィルタ]</a>
+                <a href="javascript:void(0)" onClick={showModal}>
+                  {" "}
+                  [フィルタ]
+                </a>
               </span>
             </span>
             <div className="btn-group sortby-dropdown"></div>
@@ -167,7 +183,7 @@ function Header() {
                     />
                   </p>
                   <input
-				  onClick={hidePost}
+                    onClick={hidePost}
                     className="btn btn-lg btn-primary btn-block"
                     id="filter_add"
                     type="button"

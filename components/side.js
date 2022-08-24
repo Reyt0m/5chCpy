@@ -8,7 +8,7 @@ function Sidebar() {
   return (
     <>
         <div id="content-widget" >
-          <div className="card mt-4">
+          <div className="card my-3	">
             <div className="card-body">
               <div className="content">
                 <div>

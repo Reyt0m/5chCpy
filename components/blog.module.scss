@@ -1,20 +1,38 @@
-
 .blog {
   padding: 1rem;
-	background-color: #606770;
+  background-color: #606770;
 }
-.text_right{
-	text-align: right;
+.text_right {
+  text-align: right;
 }
 .thread {
   padding: 2rem 0rem 5rem 0rem;
-  border-bottom: 1px solid #eee;
-	&__box{
-		display:flex;
-		&__wrap{
-			display: block;
+  &__box {
+    &__wrap {
+      display: block;
+      // width: 80px;
+      // height: 80px;
+      margin: 0 10px auto;
+      overflow: hidden;
+      float: left;
+    }
+  }
+	&__title {
+		font-size: 18px;
+		word-break: break-word;
+		color: #000 !important;
+		text-decoration: none;
+		&p {
+			margin-bottom: 0rem !important;
+		}
+		&__image {
 		}
 	}
+  %__content {
+    font-size: 14px;
+    margin-bottom: 40px;
+    word-break: break-all;
+  }
   &__hidden {
     position: relative;
     overflow: hidden;
@@ -32,30 +50,20 @@
       background: linear-gradient(to bottom, transparent 60%, #ffffff 95%);
     }
   }
-
-  &__title {
-    font-size: 1.5rem;
-    font-weight: semi-bold;
-    color: #000;
-    display: flex;
-    margin-bottom: 1rem;
-    &__image {
-      margin: 1rem 0rem;
-    }
-  }
   &__item {
     padding: 1rem;
   }
-	&__detail{
-		bottom: 0;
-		font-size: 85%;
-		&__child{
-			color: #606770;
-			font-size: .8rem;
-			margin-left: 10px
-		}
-	}
+  &__detail {
+    bottom: 0;
+    font-size: 85%;
+    &__child {
+      color: #606770;
+      font-size: 0.8rem;
+      margin-left: 10px;
+    }
+  }
 }
+
 .blog-list {
   list-style: none;
   display: flex;

@@ -36,8 +36,8 @@ const BlogList = ({ blogData }) => {
                 <Image
                   className={blog.thread__title__image}
                   src="/images/5ch_article.png"
-                  width={300}
-                  height={300}
+                  width={100}
+                  height={100}
                   // layout="fill"
                   align="left"
                 ></Image>
@@ -51,15 +51,13 @@ const BlogList = ({ blogData }) => {
                 </Link>
               </div>
             </div>
-            <div className={`${blog.thread__content} `}>
+            <div className={blog.thread__content}>
               <p
                 onClick={reveal}
                 className={`${show ? null : blog.thread__hidden} ${
                   blog.thread__text
                 }`}
               >
-                7/8(金) 20:21 <br />
-                <br />
                 　神奈川県警浦賀署は８日、暴行の疑いで横須賀市池田町６丁目、無職の男（７８）を現行犯逮捕した。
                 <br />
                 <br />

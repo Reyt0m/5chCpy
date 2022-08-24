@@ -50,6 +50,7 @@ https://www.pluralsight.com/guides/working-with-bootstraps-modals-react
 必要なこと
  <!-- 0. 記事リストに他の記事を追加すること -->
  0. キーワードリストの追加
+	https://www.geeksforgeeks.org/how-to-add-tag-input-in-nextjs/
  1. キーワードリストの取得
  2. ページ内でマッチするキーワードのあるスレッドidを取得
  3. スレッドidのある箇所をまとめて隠す

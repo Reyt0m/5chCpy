@@ -14,7 +14,7 @@ const HomePage = ({ blogData }) => {
   // 記事ローディング
   const [loadBlogs, setLoadBlogs] = useState(10);
   const blogs = [];
-  for (let i = 0; i < loadBlogs; i++) {
+  for (let i = 0; i < 1; i++) {
     blogs.push(blogData);
   }
   //   detect window reached bottom
