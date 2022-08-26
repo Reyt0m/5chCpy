@@ -3,9 +3,14 @@ import header from "./header.module.scss";
 import home from "../styles/Home.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+
 import "bootstrap/dist/css/bootstrap.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faSignIn } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faRightToBracket,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-bootstrap/Modal";
 
 function Header() {
@@ -77,10 +82,8 @@ function Header() {
                 ></Image>
               </Link>
             </a>
-
             <button
-              className="navbar-toggler"
-              id="humbugger-menu"
+              class="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarResponsive"
@@ -88,8 +91,7 @@ function Header() {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              あいうえお
-              <span className="navbar-toggler-icon"></span>
+			<FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="nav justify-content-end ml-auto">
@@ -111,21 +113,21 @@ function Header() {
                     />
                   </div>
                 </li>
-                <li className="nav-item dropdown">
+                <li className={`${header.nav_item}nav-item`}>
                   <a className="nav-link" href="/">
                     <FontAwesomeIcon
                       className={header.icon}
-                      icon={faSignIn}
+                      icon={faRightToBracket}
                     ></FontAwesomeIcon>
                     ログイン
                   </a>
                 </li>
-                <li className="nav-item">
+                <li className={`${header.nav_item}nav-item`}>
                   <a className="nav-link" href="/">
                     掲示板
                   </a>
                 </li>
-                <li className="nav-item">
+                <li className={`${header.nav_item}nav-item`}>
                   <a className="nav-link" href="/">
                     スマホ板
                   </a>

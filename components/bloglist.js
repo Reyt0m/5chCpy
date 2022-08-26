@@ -3,7 +3,10 @@ import Router, { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import blog from "./blog.module.scss";
+
 import "bootstrap/dist/css/bootstrap.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment, faBolt } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/Home.module.scss";
 
 const BlogList = ({ blogData }) => {
@@ -26,7 +29,7 @@ const BlogList = ({ blogData }) => {
           <div className={blog.thread__item}>
             <div className={blog.public_nav} align="right">
               <div className={blog.post_nav_buttons}>
-                <a onClick={() => setHide(!hide)} className={blog.hide_post}>
+                <a href="javascript:void(0)" onClick={() => setHide(!hide)} className={blog.hide_post}>
                   [隠す]
                 </a>
               </div>
@@ -96,28 +99,34 @@ const BlogList = ({ blogData }) => {
             <div className={` ${blog.thread__detail} ${blog.text_right}`}>
               <span className={blog.thread__detail__child}>
                 <Link href="/pages/board.js">
-                  <span className={blog.thread_detail_child_value}>45</span>
+                  <span className={blog.thread__detail__child}>
+                    <FontAwesomeIcon className={blog.icon} icon={faComment}>
+                      {" "}
+                    </FontAwesomeIcon>
+                    45
+                  </span>
                 </Link>
               </span>
-              <span className={blog.thread_detail_child}>
-                <span className={blog.thread_detail_child_value}>
+              <span className={blog.thread__detail__child}>
+                <span className={blog.thread__detail__child__value}>
                   <Link href="/pages/news.js">ニュース速報+</Link>
                 </span>
               </span>
-              <span className={blog.thread_detail_child}>
-                <span className={`${blog.fa} ${blog.fa_flash}`}></span>
-                <span className={blog.thread_detail_child_value}>18520</span>
+              <span className={blog.thread__detail__child}>
+                {" "}
+                <FontAwesomeIcon icon={faBolt}></FontAwesomeIcon>
+                18520
               </span>
-              <span className={blog.thread_detail_child}>
+              <span className={blog.thread__detail__child}>
                 <button
-                  data-boardid="newsplus"
-                  type="button"
-                  className={"btn btn_info btn_sm follow_button"}
+                //   data-boardid="newsplus"
+                //   type="button"
+                  className="btn btn-info btn-sm follow-button"
                 >
                   フォローする
                 </button>
               </span>
-              <span className={blog.thread_detail_child}></span>
+              <span class="thread_detail_child" title="ban be user"></span>
             </div>
           </div>
         ) : null}

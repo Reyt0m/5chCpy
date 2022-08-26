@@ -1,20 +1,27 @@
 @media screen and (min-width: 768px) {
-	#content-widget {
-		visibility: none;
-	}
+  #content-widget {
+    visibility: none;
+  }
 }
 
-
-#content-widget .mb-4,
+#content_widget .mb-4,
 .my-4 {
-	margin-bottom: .9rem !important
+  margin-bottom: 0.9rem !important;
 }
 
-#content-widget .mt-4,
+#content_widget .mt-4,
 .my-4 {
-	margin-top: .9rem !important
+  margin-top: 0.9rem !important;
 }
 
-.center_object{
-	text-align: center;
+.title_widget {
+  font-size: 10px;
+  font-weight: 900;
+}
+.circle_style {
+	list-style: circle;
+}
+
+.center_object {
+  text-align: center;
 }

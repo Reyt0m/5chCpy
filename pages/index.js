@@ -14,7 +14,7 @@ const HomePage = ({ blogData }) => {
   // 記事ローディング
   const [loadBlogs, setLoadBlogs] = useState(10);
   const blogs = [];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < loadBlogs; i++) {
     blogs.push(blogData);
   }
   //   detect window reached bottom
@@ -49,7 +49,6 @@ const HomePage = ({ blogData }) => {
                   {blogs.map((blog, i) => {
                     return (
                       <>
-                        <h1>{i + 1}</h1>
                         <BlogList key={i} blogData={blog}></BlogList>
                         {i == blogs.length - 1 ? (
                           <span className="last-blog" />
