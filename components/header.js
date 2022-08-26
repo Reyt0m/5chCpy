@@ -33,7 +33,7 @@ function Header() {
     alert(document.getElementsByClassName("last-blog").length);
   };
 
-  /* 未実装エリア
+  /*
   // 定義
   // stateでarrayに追加して保存する=>そこにアクセスする。
   // function getFilterKeywordsList() {
@@ -60,7 +60,6 @@ function Header() {
       $(".thread-content").each(post_contents);
     });
 */
-  }
   return (
     <>
       <div>
