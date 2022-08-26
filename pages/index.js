@@ -1,72 +1,71 @@
+import { useRef, useState, useEffect } from "react";
+
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
-import BlogList from "../components/blogList/bloglist";
+import BlogList from "../components/bloglist";
 import Header from "../components/header";
 import Sidebar from "../components/side";
 import "bootstrap/dist/css/bootstrap.css";
 import { Col, Row } from "react-bootstrap";
-// import { getSortedPostsData } from "../components/mdBlog";
-// import fs from 'fs';
-import path from "path";
 
-// const HomePage = ({ blogData,allPostsData}) => {
 const HomePage = ({ blogData }) => {
+  //push articles
+  const [loadBlogs, setLoadBlogs] = useState(10);
+  const blogs = [];
+  for (let i = 0; i < loadBlogs; i++) {
+    blogs.push(blogData);
+  }
+  //   detect window reached bottom
+  const handleScroll = () => {
+    if (
+      window.innerHeight +
+        Math.max(
+          window.pageYOffset,
+          document.documentElement.scrollTop,
+          document.body.scrollTop
+        ) >=
+      document.documentElement.offsetHeight - 100
+    )
+      setLoadBlogs(loadBlogs + 1);
+  };
+  //   add article when reached bottom
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, [loadBlogs]);
+
   return (
     <>
-      <Head>
-        <title>5ちゃんねる</title>
-      </Head>
-      <Header> </Header>
-      <Row>
-        <Col xs={9}>This is main part.
-      <div className={styles.main}>
-        <div className={styles.container}>
-          {/* ブログデータ読み込み。 */}
-
-          <BlogList blogData={blogData} />
-          <BlogList blogData={blogData} />
-          <BlogList blogData={blogData} />
+        <title>5chcpy</title>
+      <div>
+        <Header> </Header>
+        <div className={styles.main}>
+          <div className={styles.main__part} onScroll={handleScroll}>
+            <Row>
+              <Col md={8}>
+                {/* <div> */}
+                <div className={styles.post_item_box}>
+                  {blogs.map((blog, i) => {
+                    return (
+                      <>
+                        <BlogList key={i} blogData={blog}></BlogList>
+                        {i == blogs.length - 1 ? (
+                          <span className="last-blog" />
+                        ) : null}
+                      </>
+                    );
+                  })}
+                </div>
+              </Col>
+              <Col md={4}>
+                <Sidebar></Sidebar>
+              </Col>
+            </Row>
+          </div>
         </div>
-		</div>
-
-		</Col>
-        <Col xs={3}>
-			<Sidebar></Sidebar>
-        </Col>
-      </Row>
-      <Sidebar></Sidebar>
-
-        {/* <ui>
-              {allPostsData.map(({id, date, title}) => (
-						<li key={id}>
-							{id}
-							<br />
-							{title}
-							<br />
-							{date}
-						</li>
-					))}
-            </ui> */}
+      </div>
     </>
   );
 };
 export default HomePage;
-
-//  データをAPIで取得し、成功判定を取る
-// export const getServerSideProps = async ({query}) => {
-// 	const page = query.page || 1
-// 	let blogData = null
-
-// 	try {
-// 		const res = await fetch('${process.env.FETCH_URL}/blogs?page=${page}')
-// 		if(res.status !== 200){
-// 			throw new Error("データ取得失敗")
-// 		}
-// 		blogData = await res.json()
-// 	} catch (err) {
-// 		blogData = {error : {message : err.message}}
-// 	}
-// 	return {props : {blogData}}
-// }

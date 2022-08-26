@@ -1,0 +1,80 @@
+
+.navbar {
+  border-bottom: 1px solid #edeff1;
+  padding-bottom: 4px;
+}
+.navbar-nav {
+}
+.sub {
+  margin-top: -1rem;
+}
+.nav {
+  .container {
+    width: 100%;
+  }
+}
+
+.container {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  display: flex;
+  &__sub {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+.form__group {
+  display: flex;
+}
+.form_control_feedback {
+  // 位置固定
+  position: absolute;
+  // 重ね合わせ
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  // 位置調整??
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+.form__control {
+  padding-left: 2.375rem;
+  background-color: #f6f7f8;
+  &:hover {
+    border-color: #3f9ade;
+    background-color: white;
+  }
+}
+.nav_item{
+	display: flex;
+}
+
+.under_header {
+  text-align: right;
+  padding: 0 20px 5px 0;
+  font-size: 0.8rem;
+  font-weight: 900;
+  a {
+    color: #3f9ade !important;
+    text-decoration: none;
+    a:hover {
+      color: red !important;
+      text-decoration: none;
+    }
+  }
+}
+.nav__public {
+  float: left;
+  margin-left: 10px;
+}
+
+.navbar-toggler {
+  background-color: #5b9dfe;
+}
+

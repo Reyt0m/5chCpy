@@ -1,0 +1,18 @@
+html,
+body {
+  position: relative;
+  width: 100%;
+  padding-top: 56px;
+}
+
+a:link, a:visited, a:hover, a:active {
+	color: #3f9ade;
+	text-decoration: none;
+}
+
+* {
+  font-family: -apple-system, BlinkMacSystemFont, helvetica neue,
+    ヒラギノ角ゴ pron w3, Hiragino Kaku Gothic ProN, Arial, メイリオ, Meiryo,
+    sans-serif;
+  box-sizing: border-box;
+}
