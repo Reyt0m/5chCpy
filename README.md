@@ -62,10 +62,14 @@ https://www.pluralsight.com/guides/working-with-bootstraps-modals-react
  2. mapへの組み込み
  blogdataは型なので、中身を切り替える必要がある。mdかjsonならありかも
 
+ jsonファイルからの記事生成景色を撮り、関数はjsonファイルへのフィルタ実装をするという形を取る。
+
+
 * css
 画面サイズによって表示するものを切り替える
 サイドバーの調整
 アイコンの表示
+Toggle <= クリア>
 
 ## Warningの解消
 - unique keyの設定

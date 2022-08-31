@@ -1,10 +1,17 @@
 import React from "react";
+import { useRef, useState, useEffect } from "react";
+
 import header from "./header.module.scss";
 import home from "../styles/Home.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 
 import "bootstrap/dist/css/bootstrap.css";
+import Accordion from "react-bootstrap/Accordion";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -12,6 +19,7 @@ import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-bootstrap/Modal";
+import Hamburger from "hamburger-react";
 
 function Header() {
   const reView = () => {
@@ -19,7 +27,9 @@ function Header() {
     document.location.reload();
   };
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isHmOpen, setHmOpen] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const showModal = () => {
     setIsOpen(true);
@@ -83,58 +93,45 @@ function Header() {
                 ></Image>
               </Link>
             </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarResponsive"
-              aria-controls="navbarResponsive"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-			<FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarResponsive">
-              <ul className="nav justify-content-end ml-auto">
-                <li className={`${header.nav_item}nav-item`}>
-                  <div
-                    className={`${header.form__group}  form-group has-search `}
-                  >
-                    <span className={`${header.form_control_feedback}`}>
+			{/* :TODO  change the following elements margin */}
+            <Navbar bg="primary" className={`justify-content-end`} expand="lg">
+              <Container>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="me-auto">
+                    <div
+                      className={`${header.form__group}  form-group has-search `}
+                    >
+                      <span className={`${header.form_control_feedback}`}>
+                        <FontAwesomeIcon
+                          className={header.icon}
+                          icon={faSearch}
+                        ></FontAwesomeIcon>
+                      </span>
+                      <input
+                        id="search_input"
+                        type="text"
+                        className={`${header.form__control} form-control`}
+                        placeholder="スレッドタイトル検索"
+                      />
+                    </div>
+                    <a className="nav-link" href="/">
                       <FontAwesomeIcon
                         className={header.icon}
-                        icon={faSearch}
+                        icon={faRightToBracket}
                       ></FontAwesomeIcon>
-                    </span>
-                    <input
-                      id="search_input"
-                      type="text"
-                      className={`${header.form__control} form-control`}
-                      placeholder="スレッドタイトル検索"
-                    />
-                  </div>
-                </li>
-                <li className={`${header.nav_item}nav-item`}>
-                  <a className="nav-link" href="/">
-                    <FontAwesomeIcon
-                      className={header.icon}
-                      icon={faRightToBracket}
-                    ></FontAwesomeIcon>
-                    ログイン
-                  </a>
-                </li>
-                <li className={`${header.nav_item}nav-item`}>
-                  <a className="nav-link" href="/">
-                    掲示板
-                  </a>
-                </li>
-                <li className={`${header.nav_item}nav-item`}>
-                  <a className="nav-link" href="/">
-                    スマホ板
-                  </a>
-                </li>
-              </ul>
-            </div>
+                      ログイン
+                    </a>
+                    <a className="nav-link" href="/">
+                      掲示板
+                    </a>
+                    <a className="nav-link" href="/">
+                      スマホ板
+                    </a>
+                  </Nav>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
           </div>
         </nav>
       </div>
