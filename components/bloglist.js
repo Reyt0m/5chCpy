@@ -6,6 +6,9 @@ import blog from "./blog.module.scss";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "../styles/Home.module.scss";
 import data from "./data.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment, faBolt } from "@fortawesome/free-solid-svg-icons";
+
 
 const BlogList = ({ threadData }) => {
   const [show, setShow] = useState(false);
