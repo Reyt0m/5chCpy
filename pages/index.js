@@ -11,10 +11,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Col, Row } from "react-bootstrap";
 
 const HomePage = ({ blogData }) => {
-  // 記事ローディング
+  //push articles
   const [loadBlogs, setLoadBlogs] = useState(10);
   const blogs = [];
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < loadBlogs; i++) {
     blogs.push(blogData);
   }
   //   detect window reached bottom
@@ -30,7 +30,7 @@ const HomePage = ({ blogData }) => {
     )
       setLoadBlogs(loadBlogs + 1);
   };
-  //   add article
+  //   add article when reached bottom
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   }, [loadBlogs]);
@@ -49,7 +49,6 @@ const HomePage = ({ blogData }) => {
                   {blogs.map((blog, i) => {
                     return (
                       <>
-                        <h1>{i + 1}</h1>
                         <BlogList key={i} blogData={blog}></BlogList>
                         {i == blogs.length - 1 ? (
                           <span className="last-blog" />

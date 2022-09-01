@@ -2,18 +2,19 @@ import side from "./side.module.scss";
 import home from "../styles/Home.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+
 import "bootstrap/dist/css/bootstrap.css";
 
 function Sidebar() {
   return (
     <>
-        <div id="content-widget" >
-          <div className="card my-3	">
-            <div className="card-body">
-              <div className="content">
+        <div className={`${side.content_widget}`} >
+          <div className={`card my-3	`}>
+            <div className={`card-body`}>
+              <div className={`content`}>
                 <div>
                   <div className={side.center_object}>
-                    <a className="navbar-brand" >
+                    <a className={`navbar-brand`} >
 						<Image src="/images/5ch_mascot_normal.png" width={150} height={150} />
                     </a>
                   </div>
@@ -22,12 +23,12 @@ function Sidebar() {
               </div>
             </div>
           </div>
-          <div className="card my-4">
-            <div className="card-body">
-              <span className="title-widget">インフォメーション</span>
-              <hr className="widget-hr" />
-              <div className="content">
-                <ul className="circle-style">
+          <div className={`card my-4`}>
+            <div className={`card-body`}>
+              <span className={`${side.title_widget}`}>インフォメーション</span>
+              <hr className={`widget-hr`} />
+              <div className={`content`}>
+                <ul className={`${side.circle_style}`}>
                   <li>
                     <Link href="/">
                       <a>使い方＆注意 </a>
@@ -85,20 +86,20 @@ function Sidebar() {
               </div>
             </div>
           </div>
-		  <div className="card my-4">
-                <div className="card-body">
-                  <hr className="widget-hr" />
-                  {/* <div className="content">
-                    <div className="ads-item">
+		  <div className={`card my-4`}>
+                <div className={`card-body`}>
+                  <hr className={`widget-hr`} />
+                  {/* <div className={`content`}>
+                    <div className={`ads-item`}>
                     </div>
                   </div> */}
                 </div>
               </div>
 
-          <div className="sticky_side_point">
-            <div className="card my-4">
-              <div className="card-body">
-                <div className="content">
+          <div className={`sticky_side_point`}>
+            <div className={`card my-4`}>
+              <div className={`card-body`}>
+                <div className={`content`}>
                   <center>
                     Loki Technology, Inc.
                     <br />

@@ -16,6 +16,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "fs": "0.0.1-security",
     "gray-matter": "^4.0.3",
+    "hamburger-react": "^2.5.0",
+    "mdb-react-ui-kit": "^4.1.0",
     "next": "^12.1.6",
     "next-sass": "^1.0.3",
     "node-fetch": "^3.2.10",

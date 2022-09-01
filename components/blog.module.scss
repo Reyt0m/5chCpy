@@ -6,7 +6,7 @@
   text-align: right;
 }
 .thread {
-  padding: 2rem 0rem 5rem 0rem;
+  padding: 0rem 0rem 0rem 1rem;
   &__box {
     &__wrap {
       display: block;
@@ -17,17 +17,17 @@
       float: left;
     }
   }
-	&__title {
-		font-size: 18px;
-		word-break: break-word;
-		color: #000 !important;
-		text-decoration: none;
-		&p {
-			margin-bottom: 0rem !important;
-		}
-		&__image {
-		}
-	}
+  &__title {
+    font-size: 18px;
+    word-break: break-word;
+    color: #000 !important;
+    text-decoration: none;
+    &p {
+      margin-bottom: 0rem !important;
+    }
+    &__image {
+    }
+  }
   %__content {
     font-size: 14px;
     margin-bottom: 40px;
@@ -52,6 +52,7 @@
   }
   &__item {
     padding: 1rem;
+		border-bottom: 1px solid #dcdcdc;
   }
   &__detail {
     bottom: 0;
@@ -60,8 +61,14 @@
       color: #606770;
       font-size: 0.8rem;
       margin-left: 10px;
+      &__value {
+        color: #3f9ade;
+      }
     }
   }
+}
+.icon {
+  color: #3f9ade;
 }
 
 .blog-list {
@@ -79,4 +86,11 @@
   font-size: 0.7em;
   text-align: right;
   padding-bottom: 5px;
+}
+
+.post_nav_buttons {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px;
+  margin-bottom: 7px;
 }
