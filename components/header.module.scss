@@ -12,6 +12,18 @@
   .container {
     width: 100%;
   }
+	&__toggle{
+		align-items: right;
+		background-color: #3f9ade;
+	}
+	&__link{
+    color: #3f9ade !important;
+	}
+	&__btn{
+			background-color: #48526b!important;
+			border-color: #48526b;
+			color:white;
+	}
 }
 
 .container {
@@ -77,4 +89,3 @@
 .navbar-toggler {
   background-color: #5b9dfe;
 }
-

@@ -39,10 +39,14 @@ function Header() {
     setIsOpen(false);
   };
 
-  const hidePost = () => {
-    alert(document.getElementsByClassName("last-blog").length);
-  };
 
+  const [isKey, setIsKey] = useState(null);
+  const [addKey, setAddKey] = useState(null);
+
+  const onClickAddKey = () => {
+	setAddKey(isKey);
+	setIsKey(null);
+  };
   /*
   // 定義
   // stateでarrayに追加して保存する=>そこにアクセスする。
@@ -69,6 +73,8 @@ function Header() {
       };
       $(".thread-content").each(post_contents);
     });
+
+	JSONデータにフィルタをかけ、それをmapにわたして生成することになる？
 */
   return (
     <>
@@ -93,11 +99,14 @@ function Header() {
                 ></Image>
               </Link>
             </a>
-			{/* :TODO  change the following elements margin */}
-            <Navbar bg="primary" className={`justify-content-end`} expand="lg">
+            {/* :TODO  change the following elements margin */}
+            <Navbar className={`justify-content-end ml-auto`} expand="lg">
               <Container>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Toggle
+                  className={`${header.nav__toggle}`}
+                  aria-controls="toggle"
+                />
+                <Navbar.Collapse id="toggle">
                   <Nav className="me-auto">
                     <div
                       className={`${header.form__group}  form-group has-search `}
@@ -115,17 +124,17 @@ function Header() {
                         placeholder="スレッドタイトル検索"
                       />
                     </div>
-                    <a className="nav-link" href="/">
+                    <a className={`nav-link ${header.nav__link}`} href="/">
                       <FontAwesomeIcon
                         className={header.icon}
                         icon={faRightToBracket}
                       ></FontAwesomeIcon>
                       ログイン
                     </a>
-                    <a className="nav-link" href="/">
+                    <a className={`nav-link ${header.nav__link}`} href="/">
                       掲示板
                     </a>
-                    <a className="nav-link" href="/">
+                    <a className={`nav-link ${header.nav__link}`} href="/">
                       スマホ板
                     </a>
                   </Nav>
@@ -138,34 +147,6 @@ function Header() {
       <div className={header.sub}>
         <div className={header.container__sub}>
           <div className={header.under_header}>
-            {/* <br></br>
-			<br></br>
-			<br></br> */}
-            <span className={header.nav__public}>
-              <span className="menu_item">
-                <a href="/"> [ホーム]</a>
-              </span>
-              <span className="menu_item">
-                <a href="/"> [FAQ]</a>
-              </span>
-              <span className="menu_item">
-                <a href="/"> [びんたん]</a>
-              </span>
-              <span className="menu_item">
-                {/* 隠したものを表示 */}
-                <a href="" onClick={reView}>
-                  [クリア]
-                </a>
-              </span>
-              <span className="menu_item">
-                {/* キーワードで検索 */}
-                <a href="javascript:void(0)" onClick={showModal}>
-                  {" "}
-                  [フィルタ]
-                </a>
-              </span>
-            </span>
-            <div className="btn-group sortby-dropdown"></div>
             <Modal show={isOpen} onHide={hideModal}>
               <Modal.Body>
                 <div className="modal-body">
@@ -180,11 +161,13 @@ function Header() {
                       maxLength="32"
                       className="form-control"
                       placeholder="キーワード"
+					  value={isKey}
+                      onChange={(event) => setIsKey(event.target.value)}
                     />
                   </p>
                   <input
-                    onClick={hidePost}
-                    className="btn btn-lg btn-primary btn-block"
+                    onClick={setAddKey}
+                    className={`btn btn-lg ${header.nav__btn} btn-block`}
                     id="filter_add"
                     type="button"
                     value="追加"
@@ -215,9 +198,35 @@ function Header() {
                       id="filter_keywords_list"
                     ></span>
                   </div>
+				  <p>{addKey}</p>
                 </div>
               </Modal.Body>
             </Modal>
+            <span className={header.nav__public}>
+              <span className="menu_item">
+                <a href="/"> [ホーム]</a>
+              </span>
+              <span className="menu_item">
+                <a href="/"> [FAQ]</a>
+              </span>
+              <span className="menu_item">
+                <a href="/"> [びんたん]</a>
+              </span>
+              <span className="menu_item">
+                {/* 隠したものを表示 */}
+                <a href="" onClick={reView}>
+                  [クリア]
+                </a>
+              </span>
+              <span className="menu_item">
+                {/* キーワードで検索 */}
+                <a href="javascript:void(0)" onClick={showModal}>
+                  {" "}
+                  [フィルタ]
+                </a>
+              </span>
+            </span>
+            <div className="btn-group sortby-dropdown"></div>
           </div>
         </div>
       </div>
