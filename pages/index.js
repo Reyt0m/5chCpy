@@ -28,7 +28,12 @@ const HomePage = ({ blogData }) => {
         ) >=
       document.documentElement.offsetHeight - 100
     )
-      setLoadBlogs(loadBlogs + 1);
+      setLoadBlogs(loadBlogs + 0);
+  };
+
+//   追加しても出てこない。
+  const addLodingThread = () => {
+    setLoadBlogs(loadBlogs + 1);
   };
   //   add article when reached bottom
   useEffect(() => {
@@ -37,7 +42,7 @@ const HomePage = ({ blogData }) => {
 
   return (
     <>
-        <title>5chcpy</title>
+      <title>5chcpy</title>
       <div>
         <Header> </Header>
         <div className={styles.main}>
@@ -57,6 +62,18 @@ const HomePage = ({ blogData }) => {
                     );
                   })}
                 </div>
+                <center>
+                  <div class={`${styles.more_posts}`}>
+                    <a href="javascript:void(0)" id="more_news_index">
+                      <h3>
+                        もっと見る
+                        <span class="glyphicon glyphicon-arrow-down"></span>
+                      </h3>
+                    </a>
+                    <input type="hidden" value="0" id="recent_page" />
+                    <input type="hidden" value="0" onClick={addLodingThread} />
+                  </div>
+                </center>
               </Col>
               <Col md={4}>
                 <Sidebar></Sidebar>

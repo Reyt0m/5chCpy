@@ -77,3 +77,9 @@ https://reactjs.org/docs/lists-and-keys.html#keys
 - hydration
 =>基本的にhtmlタグの問題
 https://zenn.dev/onikun/articles/28fb8de056c89a
+
+## 期待値把握の方法
+道筋はわかるが、そこにかかる時間の見積もり不足
+いろんなサービスを作って時間間隔を磨く。
+同じような事例での比較をする。
+
