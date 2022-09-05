@@ -9,7 +9,6 @@ import data from "./data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faBolt } from "@fortawesome/free-solid-svg-icons";
 
-
 const BlogList = ({ threadData }) => {
   const [show, setShow] = useState(false);
   const [hide, setHide] = useState(true);
@@ -20,6 +19,23 @@ const BlogList = ({ threadData }) => {
     show ? setShow(false) : setShow(true);
     console.log("show");
   };
+  //   parseできない。
+  //   const jsonData = JSON.parse
+  //   const [key,setKey] = useState("");
+  const keywords = "スマホ";
+
+  const filteredThreads = data.threadData
+    .filter((threadData) => {
+      if (
+        data.threadData.title.toLowerCase().includes(keywords.toLowerCase()) ||
+        data.threadData.body.toLowerCase().includes(keywords.toLowerCase())
+      )
+        return threadData;
+      else return threadData;
+    })
+    .map((threadData) => {
+      console.log(threadData.id);
+    });
 
   const threadContent = data.threadData.map((threadData) => {
     return (
@@ -98,13 +114,11 @@ const BlogList = ({ threadData }) => {
                 18520
               </span>
               <span className={blog.thread__detail__child}>
-                <button
-                  className="btn btn-info btn-sm follow-button"
-                >
+                <button className="btn btn-info btn-sm follow-button">
                   フォローする
                 </button>
               </span>
-              <span class="thread_detail_child" title="ban be user"></span>
+              <span className="thread_detail_child" title="ban be user"></span>
             </div>
           </div>
         ) : null}
