@@ -62,10 +62,14 @@ https://www.pluralsight.com/guides/working-with-bootstraps-modals-react
  2. mapへの組み込み
  blogdataは型なので、中身を切り替える必要がある。mdかjsonならありかも
 
+ jsonファイルからの記事生成景色を撮り、関数はjsonファイルへのフィルタ実装をするという形を取る。
+
+
 * css
 画面サイズによって表示するものを切り替える
 サイドバーの調整
 アイコンの表示
+Toggle <= クリア>
 
 ## Warningの解消
 - unique keyの設定
@@ -73,3 +77,9 @@ https://reactjs.org/docs/lists-and-keys.html#keys
 - hydration
 =>基本的にhtmlタグの問題
 https://zenn.dev/onikun/articles/28fb8de056c89a
+
+## 期待値把握の方法
+道筋はわかるが、そこにかかる時間の見積もり不足
+いろんなサービスを作って時間間隔を磨く。
+同じような事例での比較をする。
+

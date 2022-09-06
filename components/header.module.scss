@@ -9,9 +9,29 @@
   margin-top: -1rem;
 }
 .nav {
+	border-bottom: 1px solid #edeff1;
+	padding-bottom: 4px;
   .container {
     width: 100%;
   }
+	&__toggle{
+		align-items: right;
+		background-color: #3f9ade;
+	}
+	&__link{
+    color: #3f9ade !important;
+	}
+	&__btn{
+			background-color: #48526b!important;
+			border-color: #48526b;
+			color:white;
+	}
+<<<<<<< HEAD
+	&__items{
+		padding:0;
+	}
+=======
+>>>>>>> 99cb6a83a2e671be83163b35f51bbd72b988e8f5
 }
 
 .container {
@@ -28,6 +48,7 @@
 }
 .form__group {
   display: flex;
+	margin-bottom: 0;;
 }
 .form_control_feedback {
   // 位置固定
@@ -77,4 +98,3 @@
 .navbar-toggler {
   background-color: #5b9dfe;
 }
-
