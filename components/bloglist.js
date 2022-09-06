@@ -9,7 +9,10 @@ import data from "./data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faBolt } from "@fortawesome/free-solid-svg-icons";
 
-const BlogList = ({ threadData }) => {
+// import filtered from "./filtered.js";
+
+// ここにfiltered props 受け渡し
+const BlogList = (props) => {
   const [show, setShow] = useState(false);
   const [hide, setHide] = useState(true);
 
@@ -22,20 +25,19 @@ const BlogList = ({ threadData }) => {
   //   parseできない。
   //   const jsonData = JSON.parse
   //   const [key,setKey] = useState("");
-  const keywords = "スマホ";
 
-  const filteredThreads = data.threadData
-    .filter((threadData) => {
-      if (
-        data.threadData.title.toLowerCase().includes(keywords.toLowerCase()) ||
-        data.threadData.body.toLowerCase().includes(keywords.toLowerCase())
-      )
-        return threadData;
-      else return threadData;
-    })
-    .map((threadData) => {
-      console.log(threadData.id);
-    });
+//   const filteredThreads = data.threadData
+//     .filter((threadData) => {
+//       if (
+//         data.threadData.title.toLowerCase().includes(keywords.toLowerCase()) ||
+//         data.threadData.body.toLowerCase().includes(keywords.toLowerCase())
+//       )
+//         return threadData;
+//       else return threadData;
+//     })
+//     .map((threadData) => {
+//       console.log(threadData.id);
+//     });
 
   const threadContent = data.threadData.map((threadData) => {
     return (
