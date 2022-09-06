@@ -47,34 +47,6 @@ function Header() {
 	setAddKey(isKey);
 	setIsKey(null);
   };
-  /*
-  // 定義
-  // stateでarrayに追加して保存する=>そこにアクセスする。
-  // function getFilterKeywordsList() {
-  // 	if (localStorage.filterKeywords) {
-  // 	  return JSON.parse(localStorage.filterKeywords);
-  // 	} else {
-  // 	  return [];
-  // 	}
-  //   }
-  // フィルターされたものを隠す
-  function hideFilterKeywords() {
-    // var fkw_arr_list = getFilterKeywordsList();
-    const fkw_arr_list = ["女子学生"];
-    fkw_arr_list.forEach(function (fkw) {
-      var post_contents = function () {
-        // このthisを入れ替えて上げる必要がある。 .thread-content一個一個の
-        li_thread_content = $(this).parent().parent().parent();
-        // その場所以下のテキストをすべて取得？
-        comment = $(this).html();
-        if (comment.toString().match(fkw)) {
-          li_thread_content.hide();
-        }
-      };
-      $(".thread-content").each(post_contents);
-    });
-
-*/
   return (
     <>
       <div>

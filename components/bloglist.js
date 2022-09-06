@@ -24,25 +24,33 @@ const BlogList = ({ threadData }) => {
   //   const [key,setKey] = useState("");
   const keywords = "スマホ";
 
-  const filteredThreads = data.threadData
-    .filter((threadData) => {
-      if (
-        data.threadData.title.toLowerCase().includes(keywords.toLowerCase()) ||
-        data.threadData.body.toLowerCase().includes(keywords.toLowerCase())
-      )
-        return threadData;
-      else return threadData;
-    })
-    .map((threadData) => {
-      console.log(threadData.id);
-    });
+
+//   const filteredThreads = data.threadData
+//     .filter((threadData) => {
+//       if (
+//         data.threadData.title.toLowerCase().includes(keywords.toLowerCase()) ||
+//         data.threadData.body.toLowerCase().includes(keywords.toLowerCase())
+//       )
+//         return threadData;
+//       else return threadData;
+//     })
+//     .map((threadData) => {
+//       console.log(threadData.id);
+//     });
+
+const [filteredArticle, setFilteredArticle] = useState({});
+
+  useEffect((data) => {
+    let filteredArticle = data.find((e) => e.id == 2);
+    setFilteredArticle(filteredArticle);
+  }, []);
 
   const threadContent = data.threadData.map((threadData) => {
     return (
       <div key={threadData.id}>
         {hide ? (
           <div className={blog.thread__item}>
-            <div className={blog.public_nav} align="right">
+            <div className={blog.public_nav} align="right">ｗ
               <div className={blog.post_nav_buttons}>
                 <a
                   href="javascript:void(0)"
