@@ -74,7 +74,6 @@ function Header() {
       $(".thread-content").each(post_contents);
     });
 
-	JSONデータにフィルタをかけ、それをmapにわたして生成することになる？
 */
   return (
     <>
@@ -100,11 +99,7 @@ function Header() {
               </Link>
             </a>
             {/* :TODO  change the following elements margin */}
-<<<<<<< HEAD
             <Navbar className={`justify-content-end ml-auto ${header.nav__items}`} expand="lg">
-=======
-            <Navbar className={`justify-content-end ml-auto`} expand="lg">
->>>>>>> 99cb6a83a2e671be83163b35f51bbd72b988e8f5
               <Container>
                 <Navbar.Toggle
                   className={`${header.nav__toggle}`}
