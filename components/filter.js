@@ -11,20 +11,34 @@ import data from "./data.json";
 import BlogList from "./bloglist";
 
 const Filter = () => {
+	const [addKey, setAddKey] = useState([]);
+	const [keywords, setKeywords] = useState([""]);
 
-  const [isKey, setIsKey] = useState(null);
-  const [addKey, setAddKey] = useState(null);
-
-  const onClickAddKey = () => {
-    setAddKey(isKey);
-    setIsKey(null);
+  const handleClick = () => {
+	setKeywords(addKey);
+	setAddKey('')
   };
 
-  // const filteredData = () => {
-  //   return(
-  // 	  <BlogList id = {[1,2,3]}></BlogList>
-  //   );
-  // };
+  // 複数単語フィルタ
+  const filtered = data.threadData.filter((threadData) => {
+	if (keywords === null)
+		return setKeywords([])
+	else
+    	return !keywords.some(kw => threadData.title.includes(kw)||threadData.body.includes(kw));
+  });
+
+// 追加されたワードでフィルタ
+
+
+
+  //   const filteredData = data.threadData.map((threadData) => {
+  // 	const filteredThreads = [];
+  // 	if ( iskey =! null)
+  // 		filteredThreads = []
+  // 	else
+  // 		filteredThreads = []
+  //   }
+
   // const [filteredArticle, setFilteredArticle] = useState({});
 
   // useEffect(() => {
@@ -36,6 +50,7 @@ const Filter = () => {
   return (
     <div className="modal-body">
       <p>
+
         <span className="close">×</span>
         キーワードを入れる:
         <input
@@ -46,12 +61,13 @@ const Filter = () => {
           maxLength="32"
           className="form-control"
           placeholder="キーワード"
-          value={isKey}
-          onChange={(event) => setIsKey(event.target.value)}
+          value={addKey}
+        //   onChange={(event) => setKeywords(event.target.value)}
+	  onChange={(e) => setAddKey([...addKey,e.target.value])}
         />
       </p>
       <input
-        onClick={setAddKey}
+        onClick={handleClick()}
         className={`btn btn-lg ${header.nav__btn} btn-block`}
         id="filter_add"
         type="button"
@@ -77,7 +93,18 @@ const Filter = () => {
         </span>
         <span className="filter_keywords_item" id="filter_keywords_list"></span>
       </div>
-      <p>{addKey}</p>
+      {filtered.map((filtered) => {
+        return (
+          <div key={filtered.id}>
+            <div>{filtered.title} </div>
+          </div>
+        );
+      })}
+      {keywords.map((keywords) => {
+        return (
+            <div>{keywords} </div>
+        );
+      })}
     </div>
   );
 };
