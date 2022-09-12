@@ -10,7 +10,7 @@ import data from "./data.json";
 import { BlogList } from "./bloglist";
 
 // データ元設定
-export const FilterData = createContext();
+export const FilterData = createContext([]);
 
 const Filter = () => {
   const storageKeywords = JSON.parse(localStorage.getItem("keywords"));
@@ -29,18 +29,17 @@ const Filter = () => {
     setHide(!hide);
   };
 
-  const handleDelete = () => {
+  const handleClear = () => {
     if (confirm("フィルターされたキーワードを削除してもよろしいですか？"))
       setKeywords([]);
     else return;
   };
 
-  // 複数単語フィルタ
-  const filtered = data.threadData.filter((threadData) => {
-    return !keywords.some(
-      (kw) => threadData.title.includes(kw) || threadData.body.includes(kw)
-    );
-  });
+  //   xのクリックでkeywordsを削除
+  const handleDelete = (word) => {
+    console.log("word\n" + word);
+    // setKeywords(keywords.filter((e) => e !== word));
+  };
 
   useEffect(() => {
     localStorage.setItem("keywords", JSON.stringify(keywords));
@@ -56,10 +55,10 @@ const Filter = () => {
   //   }, [])
   return (
     <div className={`modal-body`}>
-      <FilterData.Provider value={keywords}>
+      <FilterData.Provider value={{ keywords }}>
         {data ? null : <BlogList />}
-        {console.log(keywords)}
       </FilterData.Provider>
+      {/* {data ? null : <BlogList keywords={keywords} setKeywords={set}/>} */}
       <span className={`close`}>×</span>
       キーワードを入れる:
       <input
@@ -94,7 +93,7 @@ const Filter = () => {
           <a
             href="javascript:void(0)"
             className={`filter_keywords_clear_all_button`}
-            onClick={() => handleDelete()}
+            onClick={() => handleClear()}
           >
             [フィルタをクリア]
           </a>
@@ -104,15 +103,21 @@ const Filter = () => {
         </span>
         {hide ? null : (
           <span className={`filter_keywords_item`} id="filter_keywords_list">
-            {keywords.map((keywords) => {
+            {keywords.map((keywords, i) => {
               return (
-                <div class="row">
+                <div class="row" key={i}>
                   <div className={`col filter_keyword_text`}>{keywords} </div>
                   <div class="col filter_keyword_action_remove">
                     <a
                       href="javascript:void(0)"
                       class="filter_keywords_remove"
-                      data-keyword={keywords}
+                      //   data-keyword={keywords}
+                      onClick={() =>
+                        setKeywords([
+                          ...keywords.slice(0, i),
+                          ...keywords.slice(i + 1, keywords.length),
+                        ])
+                      }
                     >
                       x
                     </a>

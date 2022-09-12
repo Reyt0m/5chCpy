@@ -12,23 +12,41 @@ import { faComment, faBolt } from "@fortawesome/free-solid-svg-icons";
 import FilterData from "./filter";
 
 //  ここにfiltered props 受け渡し
-const BlogList = (props) => {
+const BlogList = () => {
   const [show, setShow] = useState(false);
   const [hide, setHide] = useState(true);
   // filter jsのデータ
   // const filtered = useContext(JSON.parse(FilterData));
-  const filtered = useContext(FilterData);
-//   console.log(FilterData);
+  //   const keywords = useContext(FilterData);
 
+  // かなり強引な解決方法 あとは、keywordsの変更を検知する必要がある。
+  const keywords =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("keywords"))
+      : [];
+
+	//   State変更が無いので機能しない。
+//   useEffect(() => {
+//     JSON.parse(localStorage.getItem("keywords"));
+//   });
+//   console.log("FilterData  \n" + FilterData);
+//   console.log("keywords \n " + keywords);
+
+  // filter
+  const filtered = data.threadData.filter((threadData) => {
+    return !keywords?.some(
+      (kw) => threadData.title.includes(kw) || threadData.body.includes(kw)
+    );
+  });
 
   const reveal = () => {
     // 切り替え
     // setShow(true);
     show ? setShow(false) : setShow(true);
-    console.log("show");
   };
 
-  const threadContent = data.threadData.map((threadContent) => {
+  const threadContent = filtered.map((threadContent) => {
+    //   const threadContent = data.threadData.map((threadContent) => {
     return (
       <div key={threadContent.id}>
         {hide ? (

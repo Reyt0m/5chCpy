@@ -51,13 +51,13 @@ const HomePage = ({ blogData }) => {
               <Col md={8}>
                 {/* <div> */}
                 <div className={styles.post_item_box}>
-                  {blogs.map((blog, i) => {
+                  {blogs.map(() => {
                     return (
                       <>
-                        <BlogList key={i} blogData={blog}></BlogList>
-                        {i == blogs.length - 1 ? (
+                        <BlogList></BlogList>
+                        {/* {i == blogs.length - 1 ? (
                           <span className="last-blog" />
-                        ) : null}
+                        ) : null} */}
                       </>
                     );
                   })}
