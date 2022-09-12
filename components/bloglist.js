@@ -9,7 +9,10 @@ import data from "./data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faBolt } from "@fortawesome/free-solid-svg-icons";
 
-const BlogList = ({ threadData }) => {
+// import filtered from "./filtered.js";
+
+// ここにfiltered props 受け渡し
+const BlogList = (props) => {
   const [show, setShow] = useState(false);
   const [hide, setHide] = useState(true);
 
@@ -22,9 +25,11 @@ const BlogList = ({ threadData }) => {
   //   parseできない。
   //   const jsonData = JSON.parse
   //   const [key,setKey] = useState("");
-  const keywords = "スマホ";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1e7ea8c79a330132c6de82302fe3cd5d42efc541
 //   const filteredThreads = data.threadData
 //     .filter((threadData) => {
 //       if (
@@ -37,6 +42,7 @@ const BlogList = ({ threadData }) => {
 //     .map((threadData) => {
 //       console.log(threadData.id);
 //     });
+<<<<<<< HEAD
 
 const [filteredArticle, setFilteredArticle] = useState({});
 
@@ -44,6 +50,8 @@ const [filteredArticle, setFilteredArticle] = useState({});
     let filteredArticle = data.find((e) => e.id == 2);
     setFilteredArticle(filteredArticle);
   }, []);
+=======
+>>>>>>> 1e7ea8c79a330132c6de82302fe3cd5d42efc541
 
   const threadContent = data.threadData.map((threadData) => {
     return (
