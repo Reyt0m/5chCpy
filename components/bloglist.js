@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Router, { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,12 +9,17 @@ import data from "./data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faBolt } from "@fortawesome/free-solid-svg-icons";
 
-// import filtered from "./filtered.js";
+import FilterData from "./filter";
 
-// ここにfiltered props 受け渡し
+//  ここにfiltered props 受け渡し
 const BlogList = (props) => {
   const [show, setShow] = useState(false);
   const [hide, setHide] = useState(true);
+  // filter jsのデータ
+  // const filtered = useContext(JSON.parse(FilterData));
+  const filtered = useContext(FilterData);
+//   console.log(FilterData);
+
 
   const reveal = () => {
     // 切り替え
@@ -22,26 +27,10 @@ const BlogList = (props) => {
     show ? setShow(false) : setShow(true);
     console.log("show");
   };
-  //   parseできない。
-  //   const jsonData = JSON.parse
-  //   const [key,setKey] = useState("");
 
-//   const filteredThreads = data.threadData
-//     .filter((threadData) => {
-//       if (
-//         data.threadData.title.toLowerCase().includes(keywords.toLowerCase()) ||
-//         data.threadData.body.toLowerCase().includes(keywords.toLowerCase())
-//       )
-//         return threadData;
-//       else return threadData;
-//     })
-//     .map((threadData) => {
-//       console.log(threadData.id);
-//     });
-
-  const threadContent = data.threadData.map((threadData) => {
+  const threadContent = data.threadData.map((threadContent) => {
     return (
-      <div key={threadData.id}>
+      <div key={threadContent.id}>
         {hide ? (
           <div className={blog.thread__item}>
             <div className={blog.public_nav} align="right">
@@ -67,7 +56,7 @@ const BlogList = (props) => {
               </div>
               <div className={blog.thread__title}>
                 <Link href="/">
-                  <p>{threadData.title}</p>
+                  <p>{threadContent.title}</p>
                 </Link>
               </div>
             </div>
@@ -78,7 +67,7 @@ const BlogList = (props) => {
                   blog.thread__text
                 }`}
               >
-                {threadData.body}
+                {threadContent.body}
                 <a
                   rel="nofollow noopener"
                   href="https://asahi.5ch.net/test/read.cgi/newsplus/1657443224/"
