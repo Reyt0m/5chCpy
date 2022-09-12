@@ -42,17 +42,6 @@ function Header() {
     setIsOpen(false);
   };
 
-<<<<<<< HEAD
-
-  const [isKey, setIsKey] = useState(null);
-  const [addKey, setAddKey] = useState(null);
-
-  const onClickAddKey = () => {
-	setAddKey(isKey);
-	setIsKey(null);
-  };
-=======
->>>>>>> 1e7ea8c79a330132c6de82302fe3cd5d42efc541
   return (
     <>
       <div>

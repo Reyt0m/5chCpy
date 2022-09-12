@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Router, { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,56 +9,49 @@ import data from "./data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faBolt } from "@fortawesome/free-solid-svg-icons";
 
-// import filtered from "./filtered.js";
+import FilterData from "./filter";
 
-// ここにfiltered props 受け渡し
-const BlogList = (props) => {
+//  ここにfiltered props 受け渡し
+const BlogList = () => {
   const [show, setShow] = useState(false);
   const [hide, setHide] = useState(true);
+  // filter jsのデータ
+  // const filtered = useContext(JSON.parse(FilterData));
+  //   const keywords = useContext(FilterData);
+
+  // かなり強引な解決方法 あとは、keywordsの変更を検知する必要がある。
+  const keywords =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("keywords"))
+      : [];
+
+	//   State変更が無いので機能しない。
+//   useEffect(() => {
+//     JSON.parse(localStorage.getItem("keywords"));
+//   });
+//   console.log("FilterData  \n" + FilterData);
+//   console.log("keywords \n " + keywords);
+
+  // filter
+  const filtered = data.threadData.filter((threadData) => {
+    return !keywords?.some(
+      (kw) => threadData.title.includes(kw) || threadData.body.includes(kw)
+    );
+  });
 
   const reveal = () => {
     // 切り替え
     // setShow(true);
     show ? setShow(false) : setShow(true);
-    console.log("show");
   };
-  //   parseできない。
-  //   const jsonData = JSON.parse
-  //   const [key,setKey] = useState("");
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 1e7ea8c79a330132c6de82302fe3cd5d42efc541
-//   const filteredThreads = data.threadData
-//     .filter((threadData) => {
-//       if (
-//         data.threadData.title.toLowerCase().includes(keywords.toLowerCase()) ||
-//         data.threadData.body.toLowerCase().includes(keywords.toLowerCase())
-//       )
-//         return threadData;
-//       else return threadData;
-//     })
-//     .map((threadData) => {
-//       console.log(threadData.id);
-//     });
-<<<<<<< HEAD
-
-const [filteredArticle, setFilteredArticle] = useState({});
-
-  useEffect((data) => {
-    let filteredArticle = data.find((e) => e.id == 2);
-    setFilteredArticle(filteredArticle);
-  }, []);
-=======
->>>>>>> 1e7ea8c79a330132c6de82302fe3cd5d42efc541
-
-  const threadContent = data.threadData.map((threadData) => {
+  const threadContent = filtered.map((threadContent) => {
+    //   const threadContent = data.threadData.map((threadContent) => {
     return (
-      <div key={threadData.id}>
+      <div key={threadContent.id}>
         {hide ? (
           <div className={blog.thread__item}>
-            <div className={blog.public_nav} align="right">ｗ
+            <div className={blog.public_nav} align="right">
               <div className={blog.post_nav_buttons}>
                 <a
                   href="javascript:void(0)"
@@ -81,7 +74,7 @@ const [filteredArticle, setFilteredArticle] = useState({});
               </div>
               <div className={blog.thread__title}>
                 <Link href="/">
-                  <p>{threadData.title}</p>
+                  <p>{threadContent.title}</p>
                 </Link>
               </div>
             </div>
@@ -92,7 +85,7 @@ const [filteredArticle, setFilteredArticle] = useState({});
                   blog.thread__text
                 }`}
               >
-                {threadData.body}
+                {threadContent.body}
                 <a
                   rel="nofollow noopener"
                   href="https://asahi.5ch.net/test/read.cgi/newsplus/1657443224/"
