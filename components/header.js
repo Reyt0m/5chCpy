@@ -135,17 +135,24 @@ function Header() {
                 </a>
               </span>
               <span className="menu_item">
-                {/* キーワードで検索 */}
                 <a href="javascript:void(0)" onClick={showModal}>
                   {" "}
                   [フィルタ]
                 </a>
               </span>
             </span>
-            <Modal className={`${header.modal}`}show={isOpen} onHide={hideModal} >
+            <Modal
+              className={`${header.modal}`}
+              show={isOpen}
+              onHide={hideModal}
+			  backdrop="static"
+            >
               <Modal.Body>
                 <div className={header.modal_content}>
-                  <span className={header.close} onClick={hideModal}>×</span>
+                    <span className={`${header.close}`} onClick={hideModal}>
+                      ×
+                    </span>
+                    <span>キーワードを入れる:</span>
                   <Filter></Filter>
                 </div>
               </Modal.Body>

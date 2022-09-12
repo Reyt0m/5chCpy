@@ -54,12 +54,12 @@ const Filter = () => {
   //     }
   //   }, [])
   return (
-      <>
-        <FilterData.Provider value={{ keywords }}>
-          {data ? null : <BlogList />}
-        </FilterData.Provider>
-        {/* {data ? null : <BlogList keywords={keywords} setKeywords={set}/>} */}
-        キーワードを入れる:
+    <>
+      <FilterData.Provider value={{ keywords }}>
+        {data ? null : <BlogList />}
+      </FilterData.Provider>
+      {/* {data ? null : <BlogList keywords={keywords} setKeywords={set}/>} */}
+      <p>
         <input
           type="text"
           id="filter_keyword"
@@ -73,61 +73,68 @@ const Filter = () => {
           //   onChange={(event) => setKeywords(event.target.value)}
           onChange={(e) => setAddKey([e.target.value])}
         />
-        <input
-          onClick={() => handleClick()}
-          className={`btn btn-lg ${header.nav__btn} btn-block`}
-          id="filter_add"
-          type="button"
-          value="追加"
-        />
-        <div align="center" className={`${header.filter_keywords_list_box}`}>
-          <span className={`${header.filter_keywords_item}`}>
-            <a
-              href="javascript:void(0)"
-              className={`${header.filter_keywords_list_button}`}
-              onClick={() => handleHide()}
-            >
-              {hide ? "[リスト表示]" : "[リストを非表示にする]"}
-            </a>
-            <a
-              href="javascript:void(0)"
-              className={`${header.filter_keywords_clear_all_button}`}
-              onClick={() => handleClear()}
-            >
-              [フィルタをクリア]
-            </a>
-            <a href="/" className={`${header.filter_keywords_refresh_page_button}`}>
-              [ページの更新]
-            </a>
-          </span>
-          {hide ? null : (
-            <span className={`${header.filter_keywords_item}`} id="filter_keywords_list">
-              {keywords.map((keywords, i) => {
-                return (
-                  <div class="row" key={i}>
-                    <div className={`col filter_keyword_text`}>{keywords} </div>
-                    <div class="col filter_keyword_action_remove">
-                      <a
-                        href="javascript:void(0)"
-                        className={`${header.filter_keywords_remove}`}
-                        //   data-keyword={keywords}
-                        onClick={() =>
-                          setKeywords([
-                            ...keywords.slice(0, i),
-                            ...keywords.slice(i + 1, keywords.length),
-                          ])
-                        }
-                      >
-                        x
-                      </a>
-                    </div>
+      </p>
+      <input
+        onClick={() => handleClick()}
+        className={`btn btn-lg ${header.nav__btn} btn-block`}
+        id="filter_add"
+        type="button"
+        value="追加"
+      />
+      <div align="center" className={`${header.filter_keywords_list_box}`}>
+        <span className={`${header.filter_keywords_item}`}>
+          <a
+            href="javascript:void(0)"
+            className={`${header.filter_keywords_list_button}`}
+            onClick={() => handleHide()}
+          >
+            {hide ? "[リスト表示]" : "[リストを非表示にする]"}
+          </a>
+          <a
+            href="javascript:void(0)"
+            className={`${header.filter_keywords_clear_all_button}`}
+            onClick={() => handleClear()}
+          >
+            [フィルタをクリア]
+          </a>
+          <a
+            href="/"
+            className={`${header.filter_keywords_refresh_page_button}`}
+          >
+            [ページの更新]
+          </a>
+        </span>
+        {hide ? null : (
+          <span
+            className={`${header.filter_keywords_item}`}
+            id="filter_keywords_list"
+          >
+            {keywords.map((keywords, i) => {
+              return (
+                <div class="row" key={i}>
+                  <div className={`col filter_keyword_text`}>{keywords} </div>
+                  <div class="col filter_keyword_action_remove">
+                    <a
+                      href="javascript:void(0)"
+                      className={`${header.filter_keywords_remove}`}
+                      //   data-keyword={keywords}
+                      onClick={() =>
+                        setKeywords([
+                          ...keywords.slice(0, i),
+                          ...keywords.slice(i + 1, keywords.length),
+                        ])
+                      }
+                    >
+                      x
+                    </a>
                   </div>
-                );
-              })}
-            </span>
-          )}
-        </div>
-      </>
+                </div>
+              );
+            })}
+          </span>
+        )}
+      </div>
+    </>
   );
 };
 export default Filter;
