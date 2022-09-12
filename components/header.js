@@ -142,9 +142,12 @@ function Header() {
                 </a>
               </span>
             </span>
-            <Modal show={isOpen} onHide={hideModal}>
+            <Modal className={`${header.modal}`}show={isOpen} onHide={hideModal} >
               <Modal.Body>
-                <Filter></Filter>
+                <div className={header.modal_content}>
+                  <span className={header.close} onClick={hideModal}>×</span>
+                  <Filter></Filter>
+                </div>
               </Modal.Body>
             </Modal>
             <div className="btn-group sortby-dropdown"></div>
