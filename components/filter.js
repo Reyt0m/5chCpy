@@ -35,12 +35,6 @@ const Filter = () => {
     else return;
   };
 
-  //   xのクリックでkeywordsを削除
-  const handleDelete = (word) => {
-    console.log("word\n" + word);
-    // setKeywords(keywords.filter((e) => e !== word));
-  };
-
   useEffect(() => {
     localStorage.setItem("keywords", JSON.stringify(keywords));
   }, [keywords]);
@@ -55,10 +49,15 @@ const Filter = () => {
   //   }, [])
   return (
     <>
+      {/* <FilterData.Provider value={{ keywords */}
       <FilterData.Provider value={{ keywords }}>
         {data ? null : <BlogList />}
       </FilterData.Provider>
-      {/* {data ? null : <BlogList keywords={keywords} setKeywords={set}/>} */}
+      {/* {data ? null : <BlogLis
+        <span className={`${header.close}`} onClick={hideModal}>
+          ×
+        </span>
+        キーワードを入れる:t keywords={keywords} setKeywords={set}/>} */}
       <p>
         <input
           type="text"
@@ -111,13 +110,16 @@ const Filter = () => {
           >
             {keywords.map((keywords, i) => {
               return (
-                <div class="row" key={i}>
-                  <div className={`col filter_keyword_text`}>{keywords} </div>
-                  <div class="col filter_keyword_action_remove">
+                <div className={`row ${i % 2 == 0 ? header.filter_keywords_item__background : null}`} key={i}>
+                  <div
+                    className={`col ${header.filter_keyword_text} `}
+                  >
+                    {keywords}{" "}
+                  </div>
+                  <div className={`col ${header.filter_keyword_action_remove}`}>
                     <a
                       href="javascript:void(0)"
                       className={`${header.filter_keywords_remove}`}
-                      //   data-keyword={keywords}
                       onClick={() =>
                         setKeywords([
                           ...keywords.slice(0, i),
@@ -137,4 +139,5 @@ const Filter = () => {
     </>
   );
 };
+
 export default Filter;

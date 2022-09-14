@@ -141,22 +141,30 @@ function Header() {
                 </a>
               </span>
             </span>
-            <Modal
-              className={`${header.modal}`}
-              show={isOpen}
-              onHide={hideModal}
-			  backdrop="static"
-            >
-              <Modal.Body>
-                <div className={header.modal_content}>
+            <div>
+              <Modal
+                className={`${header.modal}`}
+                show={isOpen}
+                onHide={hideModal}
+                size="lg"
+                // 外側クリックによる閉じが聞かない。
+                backdrop={true}
+                backdropClassName={header.modal_backdrop}
+                fade={false}
+                // dialogClassName="modal-70w"
+                animation={false}
+              >
+                <Modal.Body className={header.modal_content}>
+                  <p>
                     <span className={`${header.close}`} onClick={hideModal}>
                       ×
                     </span>
-                    <span>キーワードを入れる:</span>
+                    キーワードを入れる:
+                  </p>
                   <Filter></Filter>
-                </div>
-              </Modal.Body>
-            </Modal>
+                </Modal.Body>
+              </Modal>
+            </div>
             <div className="btn-group sortby-dropdown"></div>
           </div>
         </div>
