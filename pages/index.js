@@ -7,6 +7,7 @@ import styles from "../styles/Home.module.scss";
 import BlogList from "../components/bloglist";
 import Header from "../components/header";
 import Sidebar from "../components/side";
+import Footer from "../components/footer";
 import "bootstrap/dist/css/bootstrap.css";
 import { Col, Row } from "react-bootstrap";
 
@@ -82,6 +83,7 @@ const HomePage = ({ blogData }) => {
           </div>
         </div>
       </div>
+	  <Footer></Footer>
     </>
   );
 };

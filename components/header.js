@@ -27,8 +27,9 @@ import Filter from "./filter";
 
 function Header() {
   const reView = () => {
-    alert("非表示の投稿を本当に再表示しますか");
-    document.location.reload();
+    if (confirm("非表示の投稿を本当に再表示しますか"))
+      document.location.reload();
+    else return;
   };
 
   const [isHmOpen, setHmOpen] = useState(false);
@@ -123,10 +124,10 @@ function Header() {
                 <a href="/"> [ホーム]</a>
               </span>
               <span className="menu_item">
-                <a href="/"> [FAQ]</a>
+                <a href="/pages/FAQ"> [FAQ]</a>
               </span>
               <span className="menu_item">
-                <a href="/"> [びんたん]</a>
+                <a href="/pages/phone"> [びんたん]</a>
               </span>
               <span className="menu_item">
                 {/* 隠したものを表示 */}
@@ -141,30 +142,28 @@ function Header() {
                 </a>
               </span>
             </span>
-            <div>
-              <Modal
-                className={`${header.modal}`}
-                show={isOpen}
-                onHide={hideModal}
-                size="lg"
-                // 外側クリックによる閉じが聞かない。
-                backdrop={true}
-                backdropClassName={header.modal_backdrop}
-                fade={false}
-                // dialogClassName="modal-70w"
-                animation={false}
-              >
-                <Modal.Body className={header.modal_content}>
-                  <p>
-                    <span className={`${header.close}`} onClick={hideModal}>
-                      ×
-                    </span>
-                    キーワードを入れる:
-                  </p>
+            <Modal
+              className={`${header.modal}`}
+              show={isOpen}
+              onHide={hideModal}
+              size="lg"
+              // 外側クリックによる閉じが聞かない。
+              backdrop={true}
+              backdropClassName={header.modal_backdrop}
+              fade={false}
+              // dialogClassName="modal-70w"
+              animation={false}
+            >
+              <Modal.Body>
+                <div className={header.modal_content}>
+                  <span className={`${header.close}`} onClick={hideModal}>
+                    ×
+                  </span>
+                  <span>キーワードを入れる:</span>
                   <Filter></Filter>
-                </Modal.Body>
-              </Modal>
-            </div>
+                </div>
+              </Modal.Body>
+            </Modal>
             <div className="btn-group sortby-dropdown"></div>
           </div>
         </div>

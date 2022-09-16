@@ -17,9 +17,6 @@ const BlogList = () => {
   const [hide, setHide] = useState([]);
   const [change, setChange] = useState([]);
 
-  // filter jsのデータテスト
-  // const filtered = useContext(JSON.parse(FilterData));
-  //   const keywords = useContext(FilterData);
 
   // かなり強引な解決方法 あとは、keywordsの変更を検知する必要がある。
   const keywords =
@@ -42,9 +39,6 @@ const BlogList = () => {
   });
 
   const reveal = (i) => {
-    // 切り替え
-    // setShow(true);
-    // show ? setShow(false) : setShow(true);
     setShow((t) => [...t, i]);
   };
 
@@ -53,15 +47,13 @@ const BlogList = () => {
     setHide((t) => [...t, i]);
   };
 
-  //   mapの一要素だけかくすというより、それを押したときに、そのidだけ飛ばすとかそういう感じで。
   const threadContent = filtered.map((threadContent, index) => {
-    //   const threadContent = data.threadData.map((threadContent) => {
     return (
       <>
         {hide.includes(index) ? null : (
           <div
             key={threadContent.id}
-            className={`${index % 2 == 1 ? blog.thread__background : null}`}
+            className={`${index % 2 == 0  ? blog.thread__background : null}`}
           >
             <div className={blog.thread__item}>
               <div className={blog.thread__box}>
@@ -96,7 +88,7 @@ const BlogList = () => {
                     className={`${
                       show.includes(index)
                         ? null
-                        : index % 2 == 1
+                        : index % 2 == 0
                         ? blog.thread__odd_hidden
                         : blog.thread__hidden
                     } ${blog.thread__text}`}
