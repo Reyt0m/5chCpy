@@ -39,12 +39,6 @@ const BlogList = () => {
 //     );
 //   }
 
-  //   State変更が無いので機能しない。
-  //   useEffect(() => {
-  //     JSON.parse(localStorage.getItem("keywords"));
-  //   });
-  //   console.log("FilterData  \n" + FilterData);
-  //   console.log("keywords \n " + keywords);
 
   // filter
   const filtered = data.threadData.filter((threadData) => {

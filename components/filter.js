@@ -7,12 +7,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import data from "./data.json";
 import { BlogList } from "./bloglist";
 
-const Filter = ({}) => {
-  const storageKeywords = JSON.parse(localStorage.getItem("keywords"));
+// データを受けとり、かつ、これまで書いていたデータ更新タイミングについてはindexにデータを渡すことで対応
+const Filter = ({keywords,setKeywords}) => {
   const [addKey, setAddKey] = useState([]);
-  const [keywords, setKeywords] = useState(
-    localStorage.getItem("keywords") ? storageKeywords : []
-  );
   const [hide, setHide] = useState(false);
 
   const handleClick = () => {
@@ -24,9 +21,10 @@ const Filter = ({}) => {
     localStorage.setItem("keywords", JSON.stringify(keywords));
   }, [keywords]);
 
-  const sendKeywords = () => {
-    return { keywords, setKeywords };
-  };
+//   bloglistにデータを渡すための関数だったが一旦停止
+//   const sendKeywords = () => {
+//     return { keywords, setKeywords };
+//   };
 
   const handleHide = () => {
     setHide(!hide);
@@ -49,6 +47,7 @@ const Filter = ({}) => {
 
   return (
     <>
+	{/* 一時コメントアウト */}
       {/* <FilterData.Provider value={sendKeywords()}>
         {children}
       </FilterData.Provider> */}
