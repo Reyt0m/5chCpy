@@ -1,18 +1,13 @@
 import React from "react";
-import { useState, useEffect, useLayoutEffect, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 import header from "./header.module.scss";
 
 import "bootstrap/dist/css/bootstrap.css";
 
-import Modal from "react-bootstrap/Modal";
-
 import data from "./data.json";
 import { BlogList } from "./bloglist";
 
-// データ元設定
-export const FilterData = createContext([]);
-
-const Filter = () => {
+const Filter = ({}) => {
   const storageKeywords = JSON.parse(localStorage.getItem("keywords"));
   const [addKey, setAddKey] = useState([]);
   const [keywords, setKeywords] = useState(
@@ -25,6 +20,14 @@ const Filter = () => {
     setAddKey([]);
   };
 
+  useEffect(() => {
+    localStorage.setItem("keywords", JSON.stringify(keywords));
+  }, [keywords]);
+
+  const sendKeywords = () => {
+    return { keywords, setKeywords };
+  };
+
   const handleHide = () => {
     setHide(!hide);
   };
@@ -35,10 +38,6 @@ const Filter = () => {
     else return;
   };
 
-  useEffect(() => {
-    localStorage.setItem("keywords", JSON.stringify(keywords));
-  }, [keywords]);
-
   // この方法の方が描画が綺麗らしいがよくわかっていない。
   //   useLayoutEffect(() => {
   //     if (localStorage.getItem('keywords')) {
@@ -47,17 +46,12 @@ const Filter = () => {
   //       localStorage.setItem('keywords', JSON.stringify(keywords))
   //     }
   //   }, [])
+
   return (
     <>
-      {/* <FilterData.Provider value={{ keywords */}
-      <FilterData.Provider value={{ keywords }}>
-        {data ? null : <BlogList />}
-      </FilterData.Provider>
-      {/* {data ? null : <BlogLis
-        <span className={`${header.close}`} onClick={hideModal}>
-          ×
-        </span>
-        キーワードを入れる:t keywords={keywords} setKeywords={set}/>} */}
+      {/* <FilterData.Provider value={sendKeywords()}>
+        {children}
+      </FilterData.Provider> */}
       <p>
         <input
           type="text"
@@ -110,10 +104,13 @@ const Filter = () => {
           >
             {keywords.map((keywords, i) => {
               return (
-                <div className={`row ${i % 2 == 0 ? header.filter_keywords_item__background : null}`} key={i}>
-                  <div
-                    className={`col ${header.filter_keyword_text} `}
-                  >
+                <div
+                  className={`row ${
+                    i % 2 == 0 ? header.filter_keywords_item__background : null
+                  }`}
+                  key={i}
+                >
+                  <div className={`col ${header.filter_keyword_text} `}>
                     {keywords}{" "}
                   </div>
                   <div className={`col ${header.filter_keyword_action_remove}`}>
@@ -141,3 +138,16 @@ const Filter = () => {
 };
 
 export default Filter;
+
+// FilterData.defaultProps = {
+//   children: null,
+// };
+
+// FilterData.propTypes = {
+//   children: PropTypes.node,
+// };
+
+// export const useFilterHook = () => useContext(FilterData);
+
+// データ元設定
+export const FilterData = React.createContext(Filter.sendKeywords);

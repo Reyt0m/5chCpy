@@ -17,12 +17,27 @@ const BlogList = () => {
   const [hide, setHide] = useState([]);
   const [change, setChange] = useState([]);
 
+	const keywords	= useContext(FilterData);
+	// keywordsがやはり取れない。filterdataの受け渡し方にミスがある。
+	useEffect(() => {console.log(keywords)})
 
   // かなり強引な解決方法 あとは、keywordsの変更を検知する必要がある。
-  const keywords =
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("keywords"))
-      : [];
+//   let keywords =
+//     typeof window !== "undefined"
+//       ? JSON.parse(localStorage.getItem("keywords"))
+//       : [];
+
+	//   localstorageの検知が出来るはずだけどうまくいかない。
+	// そもそもlocal storageは同じページではうまくいかないらしい
+//   if (typeof window !== "undefined") {
+//     window.addEventListener(
+//       "localStorage",
+//       function () {
+//         JSON.parse(localStorage.getItem("keywords"));
+//       },
+//       false
+//     );
+//   }
 
   //   State変更が無いので機能しない。
   //   useEffect(() => {
@@ -53,7 +68,7 @@ const BlogList = () => {
         {hide.includes(index) ? null : (
           <div
             key={threadContent.id}
-            className={`${index % 2 == 0  ? blog.thread__background : null}`}
+            className={`${index % 2 == 0 ? blog.thread__background : null}`}
           >
             <div className={blog.thread__item}>
               <div className={blog.thread__box}>

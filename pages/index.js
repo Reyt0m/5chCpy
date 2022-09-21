@@ -6,6 +6,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import BlogList from "../components/bloglist";
 import Header from "../components/header";
+import { Filter, FilterData } from "../components/filter";
 import Sidebar from "../components/side";
 import Footer from "../components/footer";
 import "bootstrap/dist/css/bootstrap.css";
@@ -48,6 +49,12 @@ const HomePage = ({ blogData }) => {
               <Col md={8}>
                 {/* <div> */}
                 <div className={styles.post_item_box}>
+                  <FilterData.Provider value={Filter}>
+                    <BlogList></BlogList>
+                    {/* {i == blogs.length - 1 ? (
+                          <span className="last-blog" />
+                        ) : null} */}
+                  </FilterData.Provider>
                   {blogs.map(() => {
                     return (
                       <>
@@ -83,7 +90,7 @@ const HomePage = ({ blogData }) => {
           </div>
         </div>
       </div>
-	  <Footer></Footer>
+      <Footer></Footer>
     </>
   );
 };
