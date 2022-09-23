@@ -4,27 +4,19 @@ import header from "./header.module.scss";
 
 import "bootstrap/dist/css/bootstrap.css";
 
-import data from "./data.json";
-import { BlogList } from "./bloglist";
-
-// データを受けとり、かつ、これまで書いていたデータ更新タイミングについてはindexにデータを渡すことで対応
-const Filter = ({keywords,setKeywords}) => {
+export default function Filter({ keywords, setKeywords }) {
   const [addKey, setAddKey] = useState([]);
   const [hide, setHide] = useState(false);
+  const [deleteKey,setDeleteKey] = useState([]);
 
   const handleClick = () => {
-    setKeywords((keywords) => [...keywords, addKey]);
+    setKeywords([...keywords, addKey]);
     setAddKey([]);
   };
 
   useEffect(() => {
     localStorage.setItem("keywords", JSON.stringify(keywords));
   }, [keywords]);
-
-//   bloglistにデータを渡すための関数だったが一旦停止
-//   const sendKeywords = () => {
-//     return { keywords, setKeywords };
-//   };
 
   const handleHide = () => {
     setHide(!hide);
@@ -36,21 +28,15 @@ const Filter = ({keywords,setKeywords}) => {
     else return;
   };
 
-  // この方法の方が描画が綺麗らしいがよくわかっていない。
-  //   useLayoutEffect(() => {
-  //     if (localStorage.getItem('keywords')) {
-  //       setKeywords(JSON.parse(localStorage.getItem('keywords'))
-  //     } else {
-  //       localStorage.setItem('keywords', JSON.stringify(keywords))
-  //     }
-  //   }, [])
+  const handleDelete = (delKey,i) => {
+    // console.log("削除番号" + i, "キーワード" + delKey);
+    // console.log("残り", "キーワード" + [...keywords.slice(0,i),...keywords.slice(i+1)]);
+    setKeywords([...keywords.slice(0,i),...keywords.slice(i+1)]);
+  };
+
 
   return (
     <>
-	{/* 一時コメントアウト */}
-      {/* <FilterData.Provider value={sendKeywords()}>
-        {children}
-      </FilterData.Provider> */}
       <p>
         <input
           type="text"
@@ -61,8 +47,6 @@ const Filter = ({keywords,setKeywords}) => {
           className={`form-control`}
           placeholder="キーワード"
           value={addKey}
-          // ref={keyRef}
-          //   onChange={(event) => setKeywords(event.target.value)}
           onChange={(e) => setAddKey([e.target.value])}
         />
       </p>
@@ -101,7 +85,7 @@ const Filter = ({keywords,setKeywords}) => {
             className={`${header.filter_keywords_item}`}
             id="filter_keywords_list"
           >
-            {keywords.map((keywords, i) => {
+            {keywords.map((filterKeywords, i) => {
               return (
                 <div
                   className={`row ${
@@ -110,17 +94,14 @@ const Filter = ({keywords,setKeywords}) => {
                   key={i}
                 >
                   <div className={`col ${header.filter_keyword_text} `}>
-                    {keywords}{" "}
+                    {filterKeywords}{}
                   </div>
                   <div className={`col ${header.filter_keyword_action_remove}`}>
                     <a
                       href="javascript:void(0)"
                       className={`${header.filter_keywords_remove}`}
                       onClick={() =>
-                        setKeywords([
-                          ...keywords.slice(0, i),
-                          ...keywords.slice(i + 1, keywords.length),
-                        ])
+						handleDelete(filterKeywords,i)
                       }
                     >
                       x
@@ -134,19 +115,4 @@ const Filter = ({keywords,setKeywords}) => {
       </div>
     </>
   );
-};
-
-export default Filter;
-
-// FilterData.defaultProps = {
-//   children: null,
-// };
-
-// FilterData.propTypes = {
-//   children: PropTypes.node,
-// };
-
-// export const useFilterHook = () => useContext(FilterData);
-
-// データ元設定
-export const FilterData = React.createContext(Filter.sendKeywords);
+}

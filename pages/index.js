@@ -6,17 +6,19 @@ import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import BlogList from "../components/bloglist";
 import Header from "../components/header";
-import { Filter} from "../components/filter";
+import { Filter } from "../components/filter";
 import Sidebar from "../components/side";
 import Footer from "../components/footer";
 import "bootstrap/dist/css/bootstrap.css";
 import { Col, Row } from "react-bootstrap";
 
 const HomePage = ({ blogData }) => {
+	// initial key
   const [keywords, setKeywords] = useState(
-    typeof window !== "undefined" ? JSON.parse(localStorage.getItem("keywords")) : []
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("keywords"))
+      : []
   );
-
   //push articles
   const [loadBlogs, setLoadBlogs] = useState(3);
   const blogs = [];
@@ -46,25 +48,18 @@ const HomePage = ({ blogData }) => {
     <>
       <title>5chcpy</title>
       <div>
-		{/* フィルターへのデータ受け渡しを試みている。 */}
-        <Filter keywords={keywords} setKeywords={setKeywords}></Filter>
-        <Header> </Header>
+        <Header keywords={keywords} setKeywords={setKeywords}>
+          {" "}
+        </Header>
         <div className={styles.main}>
           <div className={styles.main__part} onScroll={handleScroll}>
             <Row>
               <Col md={8}>
-                {/* <div> */}
                 <div className={styles.post_item_box}>
-                  {/* <FilterData.Provider value={Filter}>
-                    <BlogList></BlogList> */}
-                  {/* {i == blogs.length - 1 ? (
-                          <span className="last-blog" />
-                        ) : null} */}
-                  {/* </FilterData.Provider> */}
                   {blogs.map(() => {
                     return (
                       <>
-                        <BlogList></BlogList>
+                        <BlogList keywords={keywords}></BlogList>
                       </>
                     );
                   })}

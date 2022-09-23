@@ -19,22 +19,16 @@ import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-bootstrap/Modal";
-import Hamburger from "hamburger-react";
-
-import data from "./data.json";
-import BlogList from "./bloglist";
 import Filter from "./filter";
 
-function Header() {
+function Header({keywords,setKeywords}) {
   const reView = () => {
     if (confirm("非表示の投稿を本当に再表示しますか"))
       document.location.reload();
     else return;
   };
 
-  const [isHmOpen, setHmOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
   const showModal = () => {
     setIsOpen(true);
   };
@@ -130,7 +124,6 @@ function Header() {
                 <a href="/pages/phone"> [びんたん]</a>
               </span>
               <span className="menu_item">
-                {/* 隠したものを表示 */}
                 <a href="" onClick={reView}>
                   [クリア]
                 </a>
@@ -160,7 +153,10 @@ function Header() {
                     ×
                   </span>
                   <span>キーワードを入れる:</span>
-                  <Filter></Filter>
+                  <Filter
+                    keywords={keywords}
+                    setKeywords={setKeywords}
+                  ></Filter>
                 </div>
               </Modal.Body>
             </Modal>

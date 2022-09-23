@@ -9,36 +9,9 @@ import data from "./data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faBolt } from "@fortawesome/free-solid-svg-icons";
 
-import FilterData from "./filter";
-
-//  ここにfiltered props 受け渡し
-const BlogList = () => {
+const BlogList = ({keywords}) => {
   const [show, setShow] = useState([]);
   const [hide, setHide] = useState([]);
-  const [change, setChange] = useState([]);
-
-	const keywords	= useContext(FilterData);
-	// keywordsがやはり取れない。filterdataの受け渡し方にミスがある。
-	useEffect(() => {console.log(keywords)})
-
-  // かなり強引な解決方法 あとは、keywordsの変更を検知する必要がある。
-//   let keywords =
-//     typeof window !== "undefined"
-//       ? JSON.parse(localStorage.getItem("keywords"))
-//       : [];
-
-	//   localstorageの検知が出来るはずだけどうまくいかない。
-	// そもそもlocal storageは同じページではうまくいかないらしい
-//   if (typeof window !== "undefined") {
-//     window.addEventListener(
-//       "localStorage",
-//       function () {
-//         JSON.parse(localStorage.getItem("keywords"));
-//       },
-//       false
-//     );
-//   }
-
 
   // filter
   const filtered = data.threadData.filter((threadData) => {
