@@ -21,7 +21,7 @@ import {
 import Modal from "react-bootstrap/Modal";
 import Filter from "./filter";
 
-function Header({keywords,setKeywords}) {
+function Header({ keywords, setKeywords }) {
   const reView = () => {
     if (confirm("非表示の投稿を本当に再表示しますか"))
       document.location.reload();
@@ -39,12 +39,16 @@ function Header({keywords,setKeywords}) {
 
   return (
     <>
-      <div>
-        <nav
-          className={`nav navbar navbar-expand-lg navbar-dark bg-white border-bottom fixed-top ${header.nav}`}
-        >
-          <div className={header.container}>
-            <a className="navbar-brand">
+      <nav
+        className={`nav navbar navbar-expand-lg navbar-dark bg-white border-bottom fixed-top ${header.nav}`}
+      >
+        {/* <div className={`container ${header.nav__container}`}> */}
+          {/* :TODO  change the following elements margin */}
+          <Navbar
+            className={`${header.nav__container}  ${header.nav__items}`}
+            expand="md"
+          >
+			<Navbar.Brand>
               <Link href="/">
                 <Image
                   src="/images/5ch_head.png"
@@ -61,55 +65,56 @@ function Header({keywords,setKeywords}) {
                   align="left"
                 ></Image>
               </Link>
-            </a>
-            {/* :TODO  change the following elements margin */}
-            <Navbar
-              className={`justify-content-end ml-auto ${header.nav__items}`}
-              expand="lg"
+
+			</Navbar.Brand>
+            {/* <Container> */}
+			{/* いらなくなった */}
+            {/* <a className={`navbar-brand`}>
+            </a> */}
+            <Navbar.Toggle
+              className={`${header.nav__toggle} justify-content-end`}
+              aria-controls="toggle"
+            />
+            <Navbar.Collapse
+              id="toggle"
+              className={``bash}
             >
-              <Container>
-                <Navbar.Toggle
-                  className={`${header.nav__toggle}`}
-                  aria-controls="toggle"
-                />
-                <Navbar.Collapse id="toggle">
-                  <Nav className="me-auto">
-                    <div
-                      className={`${header.form__group}  form-group has-search `}
-                    >
-                      <span className={`${header.form_control_feedback}`}>
-                        <FontAwesomeIcon
-                          className={header.icon}
-                          icon={faSearch}
-                        ></FontAwesomeIcon>
-                      </span>
-                      <input
-                        id="search_input"
-                        type="text"
-                        className={`${header.form__control} form-control`}
-                        placeholder="スレッドタイトル検索"
-                      />
-                    </div>
-                    <a className={`nav-link ${header.nav__link}`} href="/">
-                      <FontAwesomeIcon
-                        className={header.icon}
-                        icon={faRightToBracket}
-                      ></FontAwesomeIcon>
-                      ログイン
-                    </a>
-                    <a className={`nav-link ${header.nav__link}`} href="/">
-                      掲示板
-                    </a>
-                    <a className={`nav-link ${header.nav__link}`} href="/">
-                      スマホ板
-                    </a>
-                  </Nav>
-                </Navbar.Collapse>
-              </Container>
-            </Navbar>
-          </div>
-        </nav>
-      </div>
+              <Nav className={`navbar-nav ml-auto`}>
+                <div
+                  className={`${header.form__group}  form-group has-search `}
+                >
+                  <span className={`${header.form_control_feedback}`}>
+                    <FontAwesomeIcon
+                      className={header.icon}
+                      icon={faSearch}
+                    ></FontAwesomeIcon>
+                  </span>
+                  <input
+                    id="search_input"
+                    type="text"
+                    className={`${header.form__control} form-control`}
+                    placeholder="スレッドタイトル検索"
+                  />
+                </div>
+                <a className={`nav-link ${header.nav__link}`} href="/">
+                  <FontAwesomeIcon
+                    className={header.icon}
+                    icon={faRightToBracket}
+                  ></FontAwesomeIcon>
+                  ログイン
+                </a>
+                <a className={`nav-link ${header.nav__link}`} href="/">
+                  掲示板
+                </a>
+                <a className={`nav-link ${header.nav__link}`} href="/">
+                  スマホ板
+                </a>
+              </Nav>
+            </Navbar.Collapse>
+            {/* </Container> */}
+          </Navbar>
+        {/* </div> */}
+      </nav>
       <div className={header.sub}>
         <div className={header.container__sub}>
           <div className={header.under_header}>
