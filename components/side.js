@@ -12,7 +12,7 @@ function Sidebar() {
         <div className={`card my-3	`}>
           <div className={`card-body ${side.widget__card}`}>
             <div className={`content ${side.widget__text}`}>
-              <div className={side.center_object}>
+              <div>
                 <div className={side.center_object}>
                   <a className={`navbar-brand ${side.widget__img}`}>
                     <Image
@@ -90,7 +90,7 @@ function Sidebar() {
 
         <div className={`sticky_side_point`}>
           <div className={`card my-4`}>
-            <div className={`card-body`}>
+            <div className={`card-body ${side.widget__card}`}>
               <div className={`content`}>
                 <center>
                   Loki Technology, Inc.

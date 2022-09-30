@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 const Footer = ({}) => {
   return (
     <>
-      <div className={`py-5 bg-light`}>
+      <div className={`py-3 bg-light`}>
         <Container>
           <p className={`m-0 text-center text-dark ${footer.content}`}>
             ５ちゃんねるのご利用は利用者各位のご判断にお任せしています｜
