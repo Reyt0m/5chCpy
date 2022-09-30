@@ -19,18 +19,16 @@ import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-bootstrap/Modal";
-import Hamburger from "hamburger-react";
+import Filter from "./filter";
 
-function Header() {
+function Header({ keywords, setKeywords }) {
   const reView = () => {
-    alert("非表示の投稿を本当に再表示しますか");
-    document.location.reload();
+    if (confirm("非表示の投稿を本当に再表示しますか"))
+      document.location.reload();
+    else return;
   };
 
-  const [isHmOpen, setHmOpen] = useState(false);
-
   const [isOpen, setIsOpen] = useState(false);
-
   const showModal = () => {
     setIsOpen(true);
   };
@@ -39,192 +37,130 @@ function Header() {
     setIsOpen(false);
   };
 
-
-  const [isKey, setIsKey] = useState(null);
-  const [addKey, setAddKey] = useState(null);
-
-  const onClickAddKey = () => {
-	setAddKey(isKey);
-	setIsKey(null);
-  };
-  /*
-  // 定義
-  // stateでarrayに追加して保存する=>そこにアクセスする。
-  // function getFilterKeywordsList() {
-  // 	if (localStorage.filterKeywords) {
-  // 	  return JSON.parse(localStorage.filterKeywords);
-  // 	} else {
-  // 	  return [];
-  // 	}
-  //   }
-  // フィルターされたものを隠す
-  function hideFilterKeywords() {
-    // var fkw_arr_list = getFilterKeywordsList();
-    const fkw_arr_list = ["女子学生"];
-    fkw_arr_list.forEach(function (fkw) {
-      var post_contents = function () {
-        // このthisを入れ替えて上げる必要がある。 .thread-content一個一個の
-        li_thread_content = $(this).parent().parent().parent();
-        // その場所以下のテキストをすべて取得？
-        comment = $(this).html();
-        if (comment.toString().match(fkw)) {
-          li_thread_content.hide();
-        }
-      };
-      $(".thread-content").each(post_contents);
-    });
-
-*/
   return (
     <>
-      <div>
-        <nav className={`nav navbar navbar-expand-lg navbar-dark bg-white border-bottom fixed-top ${header.nav}`}>
-          <div className={header.container}>
-            <a className="navbar-brand">
-              <Link href="/">
+      {/* <div className={`container ${header.nav__container}`}> */}
+      {/* :TODO  change the following elements margin */}
+      <Navbar
+        className={`nav navbar navbar-expand-lg navbar-dark bg-white border-bottom fixed-top ${header.nav} ${header.nav__container}  ${header.nav__items}`}
+        expand="lg"
+      >
+        <Navbar.Brand>
+          <div className={`${header.nav__logo}`}>
+            <Link href="/">
+              <div className={`${header.nav__logo}`}>
                 <Image
                   src="/images/5ch_head.png"
                   width={50}
                   height={50}
                   align="left"
                 ></Image>
-              </Link>
-              <Link href="/">
+              </div>
+            </Link>
+            <Link href="/">
+              <span className={`${header.nav__logo__img}`}>
                 <Image
                   src="/images/5ch_logo.png"
                   width={100}
                   height={30}
                   align="left"
                 ></Image>
-              </Link>
-            </a>
-            {/* :TODO  change the following elements margin */}
-            <Navbar className={`justify-content-end ml-auto ${header.nav__items}`} expand="lg">
-              <Container>
-                <Navbar.Toggle
-                  className={`${header.nav__toggle}`}
-                  aria-controls="toggle"
-                />
-                <Navbar.Collapse id="toggle">
-                  <Nav className="me-auto">
-                    <div
-                      className={`${header.form__group}  form-group has-search `}
-                    >
-                      <span className={`${header.form_control_feedback}`}>
-                        <FontAwesomeIcon
-                          className={header.icon}
-                          icon={faSearch}
-                        ></FontAwesomeIcon>
-                      </span>
-                      <input
-                        id="search_input"
-                        type="text"
-                        className={`${header.form__control} form-control`}
-                        placeholder="スレッドタイトル検索"
-                      />
-                    </div>
-                    <a className={`nav-link ${header.nav__link}`} href="/">
-                      <FontAwesomeIcon
-                        className={header.icon}
-                        icon={faRightToBracket}
-                      ></FontAwesomeIcon>
-                      ログイン
-                    </a>
-                    <a className={`nav-link ${header.nav__link}`} href="/">
-                      掲示板
-                    </a>
-                    <a className={`nav-link ${header.nav__link}`} href="/">
-                      スマホ板
-                    </a>
-                  </Nav>
-                </Navbar.Collapse>
-              </Container>
-            </Navbar>
+              </span>
+            </Link>
           </div>
-        </nav>
-      </div>
+        </Navbar.Brand>
+        {/* <Container> */}
+        {/* いらなくなった */}
+        {/* <a className={`navbar-brand`}>
+            </a> */}
+        <Navbar.Toggle
+          className={`${header.nav__toggle} justify-content-end`}
+          aria-controls="toggle"
+        />
+        <Navbar.Collapse id="toggle" className={``}>
+          <Nav className={`navbar-nav ml-auto`}>
+            <div className={`${header.form__group}  form-group has-search `}>
+              <span className={`${header.form_control_feedback}`}>
+                <FontAwesomeIcon
+                  className={header.icon}
+                  icon={faSearch}
+                ></FontAwesomeIcon>
+              </span>
+              <input
+                id="search_input"
+                type="text"
+                className={`${header.form__control} form-control`}
+                placeholder="スレッドタイトル検索"
+              />
+            </div>
+            <a className={`nav-link ${header.nav__link}`} href="/">
+              <FontAwesomeIcon
+                className={header.icon}
+                icon={faRightToBracket}
+              ></FontAwesomeIcon>
+              ログイン
+            </a>
+            <a className={`nav-link ${header.nav__link}`} href="/">
+              掲示板
+            </a>
+            <a className={`nav-link ${header.nav__link}`} href="/">
+              スマホ板
+            </a>
+          </Nav>
+        </Navbar.Collapse>
+        {/* </Container> */}
+      </Navbar>
+      {/* </div> */}
       <div className={header.sub}>
         <div className={header.container__sub}>
           <div className={header.under_header}>
-            <Modal show={isOpen} onHide={hideModal}>
-              <Modal.Body>
-                <div className="modal-body">
-                  <p>
-                    <span className="close">×</span>
-                    キーワードを入れる:
-                    <input
-                      type="text"
-                      id="filter_keyword"
-                      name="fkeyword"
-                      minLength="3"
-                      maxLength="32"
-                      className="form-control"
-                      placeholder="キーワード"
-					  value={isKey}
-                      onChange={(event) => setIsKey(event.target.value)}
-                    />
-                  </p>
-                  <input
-                    onClick={setAddKey}
-                    className={`btn btn-lg ${header.nav__btn} btn-block`}
-                    id="filter_add"
-                    type="button"
-                    value="追加"
-                  />
-                  <div align="center" className="filter_keywords_list_box">
-                    <span className="filter_keywords_item">
-                      <a
-                        href="javascript:void(0)"
-                        className="filter_keywords_list_button"
-                      >
-                        [リスト表示]
-                      </a>
-                      <a
-                        href="javascript:void(0)"
-                        className="filter_keywords_clear_all_button"
-                      >
-                        [フィルタをクリア]
-                      </a>
-                      <a
-                        href="javascript:void(0)"
-                        className="filter_keywords_refresh_page_button"
-                      >
-                        [ページの更新]
-                      </a>
-                    </span>
-                    <span
-                      className="filter_keywords_item"
-                      id="filter_keywords_list"
-                    ></span>
-                  </div>
-				  <p>{addKey}</p>
-                </div>
-              </Modal.Body>
-            </Modal>
             <span className={header.nav__public}>
               <span className="menu_item">
                 <a href="/"> [ホーム]</a>
               </span>
               <span className="menu_item">
-                <a href="/"> [FAQ]</a>
+                <a href="/pages/FAQ"> [FAQ]</a>
               </span>
               <span className="menu_item">
-                <a href="/"> [びんたん]</a>
+                <a href="/pages/phone"> [びんたん]</a>
               </span>
               <span className="menu_item">
-                {/* 隠したものを表示 */}
                 <a href="" onClick={reView}>
                   [クリア]
                 </a>
               </span>
               <span className="menu_item">
-                {/* キーワードで検索 */}
                 <a href="javascript:void(0)" onClick={showModal}>
                   {" "}
                   [フィルタ]
                 </a>
               </span>
             </span>
+            <Modal
+              className={`${header.modal}`}
+              show={isOpen}
+              onHide={hideModal}
+              size="lg"
+              // 外側クリックによる閉じが聞かない。
+              backdrop={true}
+              backdropClassName={header.modal_backdrop}
+              fade={false}
+              // dialogClassName="modal-70w"
+              animation={false}
+            >
+              <Modal.Body>
+                <div className={header.modal_content}>
+                  <span className={`${header.close}`} onClick={hideModal}>
+                    ×
+                  </span>
+                  <span>キーワードを入れる:</span>
+                  <Filter
+                    keywords={keywords}
+                    setKeywords={setKeywords}
+                  ></Filter>
+                </div>
+              </Modal.Body>
+            </Modal>
             <div className="btn-group sortby-dropdown"></div>
           </div>
         </div>

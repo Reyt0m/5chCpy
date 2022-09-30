@@ -19,9 +19,25 @@
   font-weight: 900;
 }
 .circle_style {
-	list-style: circle;
+  list-style: circle;
 }
 
 .center_object {
   text-align: center;
+}
+
+.widget__card {
+  padding: 0.62rem 0.8rem;
+}
+.widget__text {
+  font-size: 13px;
+  font-weight: 400;
+}
+.widget__img {
+  margin-right: 0rem;
+}
+
+.widget__hr {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
 }

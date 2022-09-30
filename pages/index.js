@@ -6,13 +6,21 @@ import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import BlogList from "../components/bloglist";
 import Header from "../components/header";
+import { Filter } from "../components/filter";
 import Sidebar from "../components/side";
+import Footer from "../components/footer";
 import "bootstrap/dist/css/bootstrap.css";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 
 const HomePage = ({ blogData }) => {
+  // initial key
+  const [keywords, setKeywords] = useState(
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("keywords"))
+      : []
+  );
   //push articles
-  const [loadBlogs, setLoadBlogs] = useState(10);
+  const [loadBlogs, setLoadBlogs] = useState(3);
   const blogs = [];
   for (let i = 0; i < loadBlogs; i++) {
     blogs.push(blogData);
@@ -31,10 +39,6 @@ const HomePage = ({ blogData }) => {
       setLoadBlogs(loadBlogs + 0);
   };
 
-//   追加しても出てこない。
-  const addLodingThread = () => {
-    setLoadBlogs(loadBlogs + 1);
-  };
   //   add article when reached bottom
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -44,44 +48,47 @@ const HomePage = ({ blogData }) => {
     <>
       <title>5chcpy</title>
       <div>
-        <Header> </Header>
+        <Header keywords={keywords} setKeywords={setKeywords}>
+          {" "}
+        </Header>
         <div className={styles.main}>
-          <div className={styles.main__part} onScroll={handleScroll}>
-            <Row>
-              <Col md={8}>
-                {/* <div> */}
-                <div className={styles.post_item_box}>
-                  {blogs.map((blog, i) => {
-                    return (
-                      <>
-                        <BlogList key={i} blogData={blog}></BlogList>
-                        {i == blogs.length - 1 ? (
-                          <span className="last-blog" />
-                        ) : null}
-                      </>
-                    );
-                  })}
-                </div>
-                <center>
-                  <div class={`${styles.more_posts}`}>
-                    <a href="javascript:void(0)" id="more_news_index">
-                      <h3>
-                        もっと見る
-                        <span class="glyphicon glyphicon-arrow-down"></span>
-                      </h3>
-                    </a>
-                    <input type="hidden" value="0" id="recent_page" />
-                    <input type="hidden" value="0" onClick={addLodingThread} />
+            <Container onScroll={handleScroll}>
+              <Row>
+                <Col lg={8}>
+                  <div className={styles.post_item_box}>
+                    {blogs.map(() => {
+                      return (
+                        <>
+                          <BlogList keywords={keywords}></BlogList>
+                        </>
+                      );
+                    })}
                   </div>
-                </center>
-              </Col>
-              <Col md={4}>
-                <Sidebar></Sidebar>
-              </Col>
-            </Row>
-          </div>
+                  <center>
+                    <div class={`${styles.more_posts}`}>
+                      <a
+                        href="javascript:void(0)"
+                        id="more_news_index"
+                        onClick={() => setLoadBlogs(loadBlogs + 3)}
+                      >
+                        <h3>
+                          もっと見る
+                          <span class="glyphicon glyphicon-arrow-down"></span>
+                        </h3>
+                      </a>
+                      <input type="hidden" value="0" id="recent_page" />
+                      <input type="hidden" value="0" />
+                    </div>
+                  </center>
+                </Col>
+                <Col md={4}>
+                  <Sidebar></Sidebar>
+                </Col>
+              </Row>
+            </Container>
         </div>
       </div>
+      <Footer></Footer>
     </>
   );
 };
