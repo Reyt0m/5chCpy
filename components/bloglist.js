@@ -9,7 +9,7 @@ import data from "./data.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faBolt } from "@fortawesome/free-solid-svg-icons";
 
-const BlogList = ({keywords}) => {
+const BlogList = ({ keywords }) => {
   const [show, setShow] = useState([]);
   const [hide, setHide] = useState([]);
 
@@ -64,17 +64,17 @@ const BlogList = ({keywords}) => {
                     <p>{threadContent.title}</p>
                   </Link>
                 </div>
-                <div className={blog.thread__content}>
-                  <p
-                    onClick={() => reveal(index)}
-                    className={`${
-                      show.includes(index)
-                        ? null
-                        : index % 2 == 0
-                        ? blog.thread__odd_hidden
-                        : blog.thread__hidden
-                    } ${blog.thread__text}`}
-                  >
+                <div
+                  onClick={() => reveal(index)}
+                  className={`${
+                    show.includes(index)
+                      ? null
+                      : index % 2 == 0
+                      ? blog.thread__odd_hidden
+                      : blog.thread__hidden
+                  } ${blog.thread__content}`}
+                >
+                  <p className={` ${blog.thread__text}`}>
                     {threadContent.body}
                     <a
                       rel="nofollow noopener"
@@ -111,7 +111,8 @@ const BlogList = ({keywords}) => {
                   </span>
                   <span className={blog.thread__detail__child}>
                     {" "}
-                    <FontAwesomeIcon icon={faBolt}></FontAwesomeIcon>
+                    <FontAwesomeIcon className={`${blog.thread__detail__child__icon}`}
+					icon={faBolt}></FontAwesomeIcon>
                     18520
                   </span>
                   <span className={blog.thread__detail__child}>

@@ -39,82 +39,78 @@ function Header({ keywords, setKeywords }) {
 
   return (
     <>
-      <nav
-        className={`nav navbar navbar-expand-lg navbar-dark bg-white border-bottom fixed-top ${header.nav}`}
+      {/* <div className={`container ${header.nav__container}`}> */}
+      {/* :TODO  change the following elements margin */}
+      <Navbar
+        className={`nav navbar navbar-expand-lg navbar-dark bg-white border-bottom fixed-top ${header.nav} ${header.nav__container}  ${header.nav__items}`}
+        expand="lg"
       >
-        {/* <div className={`container ${header.nav__container}`}> */}
-          {/* :TODO  change the following elements margin */}
-          <Navbar
-            className={`${header.nav__container}  ${header.nav__items}`}
-            expand="md"
-          >
-			<Navbar.Brand>
-              <Link href="/">
+        <Navbar.Brand>
+          <div className={`${header.nav__logo}`}>
+            <Link href="/">
+              <div className={`${header.nav__logo}`}>
                 <Image
                   src="/images/5ch_head.png"
                   width={50}
                   height={50}
                   align="left"
                 ></Image>
-              </Link>
-              <Link href="/">
+              </div>
+            </Link>
+            <Link href="/">
+              <span className={`${header.nav__logo__img}`}>
                 <Image
                   src="/images/5ch_logo.png"
                   width={100}
                   height={30}
                   align="left"
                 ></Image>
-              </Link>
-
-			</Navbar.Brand>
-            {/* <Container> */}
-			{/* いらなくなった */}
-            {/* <a className={`navbar-brand`}>
+              </span>
+            </Link>
+          </div>
+        </Navbar.Brand>
+        {/* <Container> */}
+        {/* いらなくなった */}
+        {/* <a className={`navbar-brand`}>
             </a> */}
-            <Navbar.Toggle
-              className={`${header.nav__toggle} justify-content-end`}
-              aria-controls="toggle"
-            />
-            <Navbar.Collapse
-              id="toggle"
-              className={``bash}
-            >
-              <Nav className={`navbar-nav ml-auto`}>
-                <div
-                  className={`${header.form__group}  form-group has-search `}
-                >
-                  <span className={`${header.form_control_feedback}`}>
-                    <FontAwesomeIcon
-                      className={header.icon}
-                      icon={faSearch}
-                    ></FontAwesomeIcon>
-                  </span>
-                  <input
-                    id="search_input"
-                    type="text"
-                    className={`${header.form__control} form-control`}
-                    placeholder="スレッドタイトル検索"
-                  />
-                </div>
-                <a className={`nav-link ${header.nav__link}`} href="/">
-                  <FontAwesomeIcon
-                    className={header.icon}
-                    icon={faRightToBracket}
-                  ></FontAwesomeIcon>
-                  ログイン
-                </a>
-                <a className={`nav-link ${header.nav__link}`} href="/">
-                  掲示板
-                </a>
-                <a className={`nav-link ${header.nav__link}`} href="/">
-                  スマホ板
-                </a>
-              </Nav>
-            </Navbar.Collapse>
-            {/* </Container> */}
-          </Navbar>
-        {/* </div> */}
-      </nav>
+        <Navbar.Toggle
+          className={`${header.nav__toggle} justify-content-end`}
+          aria-controls="toggle"
+        />
+        <Navbar.Collapse id="toggle" className={``}>
+          <Nav className={`navbar-nav ml-auto`}>
+            <div className={`${header.form__group}  form-group has-search `}>
+              <span className={`${header.form_control_feedback}`}>
+                <FontAwesomeIcon
+                  className={header.icon}
+                  icon={faSearch}
+                ></FontAwesomeIcon>
+              </span>
+              <input
+                id="search_input"
+                type="text"
+                className={`${header.form__control} form-control`}
+                placeholder="スレッドタイトル検索"
+              />
+            </div>
+            <a className={`nav-link ${header.nav__link}`} href="/">
+              <FontAwesomeIcon
+                className={header.icon}
+                icon={faRightToBracket}
+              ></FontAwesomeIcon>
+              ログイン
+            </a>
+            <a className={`nav-link ${header.nav__link}`} href="/">
+              掲示板
+            </a>
+            <a className={`nav-link ${header.nav__link}`} href="/">
+              スマホ板
+            </a>
+          </Nav>
+        </Navbar.Collapse>
+        {/* </Container> */}
+      </Navbar>
+      {/* </div> */}
       <div className={header.sub}>
         <div className={header.container__sub}>
           <div className={header.under_header}>

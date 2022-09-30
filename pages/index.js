@@ -10,10 +10,10 @@ import { Filter } from "../components/filter";
 import Sidebar from "../components/side";
 import Footer from "../components/footer";
 import "bootstrap/dist/css/bootstrap.css";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 
 const HomePage = ({ blogData }) => {
-	// initial key
+  // initial key
   const [keywords, setKeywords] = useState(
     typeof window !== "undefined"
       ? JSON.parse(localStorage.getItem("keywords"))
@@ -52,40 +52,40 @@ const HomePage = ({ blogData }) => {
           {" "}
         </Header>
         <div className={styles.main}>
-          <div className={styles.main__part} onScroll={handleScroll}>
-            <Row>
-              <Col md={8}>
-                <div className={styles.post_item_box}>
-                  {blogs.map(() => {
-                    return (
-                      <>
-                        <BlogList keywords={keywords}></BlogList>
-                      </>
-                    );
-                  })}
-                </div>
-                <center>
-                  <div class={`${styles.more_posts}`}>
-                    <a
-                      href="javascript:void(0)"
-                      id="more_news_index"
-                      onClick={() => setLoadBlogs(loadBlogs + 3)}
-                    >
-                      <h3>
-                        もっと見る
-                        <span class="glyphicon glyphicon-arrow-down"></span>
-                      </h3>
-                    </a>
-                    <input type="hidden" value="0" id="recent_page" />
-                    <input type="hidden" value="0" />
+            <Container onScroll={handleScroll}>
+              <Row>
+                <Col lg={8}>
+                  <div className={styles.post_item_box}>
+                    {blogs.map(() => {
+                      return (
+                        <>
+                          <BlogList keywords={keywords}></BlogList>
+                        </>
+                      );
+                    })}
                   </div>
-                </center>
-              </Col>
-              <Col md={4}>
-                <Sidebar></Sidebar>
-              </Col>
-            </Row>
-          </div>
+                  <center>
+                    <div class={`${styles.more_posts}`}>
+                      <a
+                        href="javascript:void(0)"
+                        id="more_news_index"
+                        onClick={() => setLoadBlogs(loadBlogs + 3)}
+                      >
+                        <h3>
+                          もっと見る
+                          <span class="glyphicon glyphicon-arrow-down"></span>
+                        </h3>
+                      </a>
+                      <input type="hidden" value="0" id="recent_page" />
+                      <input type="hidden" value="0" />
+                    </div>
+                  </center>
+                </Col>
+                <Col md={4}>
+                  <Sidebar></Sidebar>
+                </Col>
+              </Row>
+            </Container>
         </div>
       </div>
       <Footer></Footer>
