@@ -81,7 +81,7 @@ const HomePage = ({ blogData }) => {
                     </div>
                   </center>
                 </Col>
-                <Col md={4}>
+                <Col md={4} className={styles.side}>
                   <Sidebar></Sidebar>
                 </Col>
               </Row>

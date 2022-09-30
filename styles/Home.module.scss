@@ -66,3 +66,7 @@
 		color : white;
 	}
 }
+	@media (max-width: 991px){ .side {
+		flex: none !important;
+		max-width: none !important;
+	}}
