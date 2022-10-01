@@ -29,9 +29,7 @@ export default function Filter({ keywords, setKeywords }) {
   };
 
   const handleDelete = (delKey,i) => {
-    // console.log("削除番号" + i, "キーワード" + delKey);
-    // console.log("残り", "キーワード" + [...keywords.slice(0,i),...keywords.slice(i+1)]);
-    setKeywords([...keywords.slice(0,i),...keywords.slice(i+1)]);
+            setKeywords([...keywords.slice(0,i),...keywords.slice(i+1)]);
   };
 
 
