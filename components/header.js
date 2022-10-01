@@ -39,8 +39,6 @@ function Header({ keywords, setKeywords }) {
 
   return (
     <>
-      {/* <div className={`container ${header.nav__container}`}> */}
-      {/* :TODO  change the following elements margin */}
       <Navbar
         className={`nav navbar navbar-expand-lg navbar-dark bg-white border-bottom fixed-top ${header.nav} ${header.nav__container}  ${header.nav__items}`}
         expand="lg"
@@ -69,10 +67,6 @@ function Header({ keywords, setKeywords }) {
             </Link>
           </div>
         </Navbar.Brand>
-        {/* <Container> */}
-        {/* いらなくなった */}
-        {/* <a className={`navbar-brand`}>
-            </a> */}
         <Navbar.Toggle
           className={`${header.nav__toggle} justify-content-end`}
           aria-controls="toggle"
@@ -108,9 +102,7 @@ function Header({ keywords, setKeywords }) {
             </a>
           </Nav>
         </Navbar.Collapse>
-        {/* </Container> */}
       </Navbar>
-      {/* </div> */}
       <div className={header.sub}>
         <div className={header.container__sub}>
           <div className={header.under_header}>
@@ -141,13 +133,11 @@ function Header({ keywords, setKeywords }) {
               show={isOpen}
               onHide={hideModal}
               size="lg"
-              // 外側クリックによる閉じが聞かない。
               backdrop={true}
               backdropClassName={header.modal_backdrop}
               dialogClassName={header.modal_dialog}
               contentClassName={header.modal_content}
               fade={false}
-              // dialogClassName="modal-70w"
               animation={false}
             >
               <Modal.Body ClassName={header.modal_content__body}>
