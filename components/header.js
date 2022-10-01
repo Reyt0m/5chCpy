@@ -137,28 +137,27 @@ function Header({ keywords, setKeywords }) {
               </span>
             </span>
             <Modal
-              className={`${header.modal}`}
+              className={`${header.modal} `}
               show={isOpen}
               onHide={hideModal}
               size="lg"
               // 外側クリックによる閉じが聞かない。
               backdrop={true}
               backdropClassName={header.modal_backdrop}
+              dialogClassName={header.modal_dialog}
+              contentClassName={header.modal_content}
               fade={false}
               // dialogClassName="modal-70w"
               animation={false}
             >
-              <Modal.Body>
-                <div className={header.modal_content}>
+              <Modal.Body ClassName={header.modal_content__body}>
+                <div>
+                  <span>キーワードを入れる:</span>
                   <span className={`${header.close}`} onClick={hideModal}>
                     ×
                   </span>
-                  <span>キーワードを入れる:</span>
-                  <Filter
-                    keywords={keywords}
-                    setKeywords={setKeywords}
-                  ></Filter>
                 </div>
+                <Filter keywords={keywords} setKeywords={setKeywords}></Filter>
               </Modal.Body>
             </Modal>
             <div className="btn-group sortby-dropdown"></div>

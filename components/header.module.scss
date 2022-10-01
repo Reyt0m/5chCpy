@@ -17,7 +17,7 @@
   padding-bottom: 4px;
   &__toggle {
     align-items: right;
-    background-color: #3f9ade;
+    background-color: #5b9dfe;
   }
   &__link {
     color: #3f9ade !important;
@@ -36,9 +36,13 @@
   display: flex;
   &__sub {
     padding-right: 15px;
-    // padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+  }
+}
+@media (max-width: 991.98px) {
+  .container__sub {
+    padding-left: 15px;
   }
 }
 .form__group {
@@ -71,17 +75,17 @@
   display: flex;
 }
 .nav__logo {
-	display: flex;
-	margin-right: 5px;
-	&__img{
-		vertical-align: middle;
-		margin-top: 0.8rem;
-		max-height: 30px;
-	}
+  display: flex;
+  margin-right: 5px;
+  &__img {
+    vertical-align: middle;
+    margin-top: 0.8rem;
+    max-height: 30px;
+  }
 }
 .under_header {
   text-align: right;
-  padding: 5px 20px 10px 0;
+  padding: 0 20px 5px 0;
   font-size: 0.8rem;
   font-weight: 900;
   a {
@@ -91,6 +95,11 @@
       color: red !important;
       text-decoration: none;
     }
+  }
+}
+@media (max-width: 991.98px) {
+  .under_header {
+    padding: 5px 0 10px 0;
   }
 }
 .nav__public {
@@ -117,25 +126,36 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal_backdrop {
-  opacity: 0 !important;
-  z-index: 1 !important;
-}
-
-.modal_content {
+.modal_dialog {
   background-color: #fefefe;
-  // margin: auto;
-  padding: 20px;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #888;
+}
+.modal_content {
+  border: none;
   // border: 1px solid #888;
+  // margin: auto;
   // width: 30%;
   // @media (max-width: 991px) {
   // }
   // width: 70% !important;
 }
+@media (max-width: 991px) {
+  .modal_dialog {
+    width: 70% !important;
+    max-width: none;
+  }
+}
+.modal_backdrop {
+  opacity: 0 !important;
+  z-index: 1 !important;
+}
 
 .close {
   color: #aaa;
   float: right;
+	margin-top: -1rem;
   font-size: 28px;
   font-weight: 700;
   text-shadow: 0 1px 0 #fff;
@@ -154,6 +174,7 @@
   font-size: 14px;
   &__background {
     background-color: #f6f6f6;
+    margin: 0.2rem;
   }
 }
 .filter_keyword_text {
